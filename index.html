@@ -80,10 +80,16 @@ section{padding:88px 0;}
 .hero{
   position:relative;background:var(--white);padding:100px 5vw 80px;
   max-width:1280px;margin:0 auto;
-  display:grid;grid-template-columns:1.02fr .98fr;gap:60px;align-items:stretch;
+  display:grid;grid-template-columns:1.02fr .98fr;column-gap:60px;row-gap:0;
+  grid-template-areas:
+    "h1     vid"
+    "p      vid"
+    "chips  vid"
+    "acts   vid"
+    "rating vid";
+  align-items:center;
 }
-.hero-copy{display:flex;flex-direction:column;justify-content:center;}
-.hero h1{
+.hero h1{grid-area:h1;align-self:end;
   font-family:var(--disp);font-weight:700;color:var(--ink);
   font-size:clamp(2.1rem,4.6vw,3.6rem);line-height:1.08;letter-spacing:-.025em;max-width:12ch;
 }
@@ -93,23 +99,24 @@ section{padding:88px 0;}
   display:inline-block;background:#FBEFC8;border-radius:12px;
   padding:2px 16px 6px;margin-top:8px;box-decoration-break:clone;
 }
-.hero p{color:var(--ink-soft);font-size:1.02rem;margin-top:20px;max-width:44ch;line-height:1.6;opacity:0;transform:translateY(12px);}
+.hero p{grid-area:p;color:var(--ink-soft);font-size:1.02rem;margin-top:20px;max-width:44ch;line-height:1.6;opacity:0;transform:translateY(12px);}
 
-.hero .chips{display:grid;grid-template-columns:1fr 1fr;gap:11px;margin-top:26px;max-width:460px;}
+.hero .chips{grid-area:chips;display:grid;grid-template-columns:1fr 1fr;gap:11px;margin-top:26px;max-width:460px;}
 .hero .chip{
   border:1px solid var(--line);border-radius:100px;padding:12px 20px;background:#fff;
   font-family:var(--sans);font-size:14px;font-weight:600;color:var(--ink);
   opacity:0;transform:translateY(10px);text-align:center;
 }
-.hero-acts{display:flex;gap:12px;margin-top:26px;flex-wrap:wrap;opacity:0;transform:translateY(12px);}
+.hero-acts{grid-area:acts;display:flex;gap:12px;margin-top:26px;flex-wrap:wrap;opacity:0;transform:translateY(12px);}
 .hero .btn{padding:16px 30px;font-size:15px;}
 
-.hero .rating{display:flex;flex-direction:column;gap:6px;margin-top:30px;opacity:0;transform:translateY(10px);}
+.hero .rating{grid-area:rating;display:flex;flex-direction:column;gap:6px;margin-top:30px;opacity:0;transform:translateY(10px);}
 .hero .rating .st{color:#F5A623;font-size:15px;letter-spacing:3px;}
 .hero .rating .rl{font-size:13.5px;color:var(--ink-soft);font-weight:500;}
 .hero .rating .rl b{color:var(--ink);font-weight:600;}
 
 .hero-visual{
+  grid-area:vid;
   position:relative;border-radius:16px;overflow:hidden;
   height:100%;min-height:520px;align-self:stretch;
   box-shadow:0 26px 60px rgba(23,20,29,.16);background:var(--ink);
@@ -124,11 +131,18 @@ section{padding:88px 0;}
   padding:6px 12px;border-radius:100px;font-weight:600;
 }
 @media(max-width:900px){
-  .hero{grid-template-columns:1fr;gap:38px;padding-top:90px;}
-  .hero h1{max-width:14ch;}
-  .hero-visual{height:76vw;max-height:420px;min-height:240px;}
+  .hero{
+    grid-template-columns:1fr;row-gap:0;padding-top:90px;
+    grid-template-areas:"h1" "p" "vid" "chips" "acts" "rating";
+  }
+  .hero h1{max-width:14ch;align-self:auto;}
+  .hero-visual{height:76vw;max-height:420px;min-height:240px;margin-top:24px;}
+  .hero .chips{margin-top:20px;}
 }
-@media(max-width:520px){.hero .chips{grid-template-columns:1fr;}}
+@media(max-width:520px){
+  .hero .chip{padding:8px 10px;font-size:12px;}
+  .hero .chips{gap:8px;}
+}
 
 /* FACILITY */
 .fac{position:relative;background:var(--paper);border-top:1px solid var(--line);border-bottom:1px solid var(--line);overflow:hidden;padding:0;}
@@ -386,31 +400,29 @@ footer.site .fbot a{display:inline;font-size:12px;color:rgba(255,255,255,.45);}
 </div>
 
 <section class="hero">
-  <div class="hero-copy">
-    <h1 id="hero-h1">We Pack, Move &amp; <span class="hl">Store Everything</span></h1>
-    <p>Climate-controlled storage in Al Quoz, Dubai — eight sizes, 24/7 access, and a team that packs and moves you there.</p>
-
-    <div class="chips">
-      <div class="chip">24/7 Access</div>
-      <div class="chip">Air Conditioned</div>
-      <div class="chip">Packing &amp; Moving</div>
-      <div class="chip">Elevators Access</div>
-    </div>
-
-    <div class="hero-acts">
-      <a class="btn" href="#facility">Reserve Your Unit →</a>
-      <a class="btn ghost" href="#quote">Get a free quote</a>
-    </div>
-
-    <div class="rating">
-      <div class="st">★★★★★</div>
-      <div class="rl"><b>5/5</b> — 23+ Google Reviews</div>
-    </div>
-  </div>
+  <h1 id="hero-h1">We Pack, Move &amp; <span class="hl">Store Everything</span></h1>
+  <p>Climate-controlled storage in Al Quoz, Dubai — eight sizes, 24/7 access, and a team that packs and moves you there.</p>
 
   <div class="hero-visual">
     <video autoplay muted loop playsinline><source src="https://purplebox.ae/wp-content/uploads/2026/06/video.mp4" type="video/mp4"></video>
     <div class="vtag"><span>Al Quoz 2, Dubai</span><span>24/7 CCTV</span></div>
+  </div>
+
+  <div class="chips">
+    <div class="chip">24/7 Access</div>
+    <div class="chip">Air Conditioned</div>
+    <div class="chip">Packing &amp; Moving</div>
+    <div class="chip">Elevators Access</div>
+  </div>
+
+  <div class="hero-acts">
+    <a class="btn" href="#facility">Reserve Your Unit →</a>
+    <a class="btn ghost" href="#quote">Get a free quote</a>
+  </div>
+
+  <div class="rating">
+    <div class="st">★★★★★</div>
+    <div class="rl"><b>5/5</b> — 23+ Google Reviews</div>
   </div>
 </section>
 
