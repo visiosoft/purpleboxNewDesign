@@ -392,7 +392,7 @@ footer.site .fbot a{display:inline;font-size:12px;color:rgba(255,255,255,.45);}
 gsap.registerPlugin(ScrollTrigger);
 
 /* ---------- AI chat widget ---------- */
-(function(){
+document.addEventListener('DOMContentLoaded',function(){
   const btn=document.getElementById('pbChatBtn');
   const panel=document.getElementById('pbChatPanel');
   const closeBtn=document.getElementById('pbChatClose');
@@ -451,7 +451,7 @@ gsap.registerPlugin(ScrollTrigger);
   }
   sendBtn.addEventListener('click',send);
   input.addEventListener('keydown',e=>{ if(e.key==='Enter') send(); });
-})();
+});
 
 /* ---------- mobile menu ---------- */
 (function(){
