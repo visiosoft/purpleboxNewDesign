@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Packing &amp; Moving — PurpleBox Dubai</title>
+<meta name="description" content="Professional packing and moving in Dubai. Trained crews, padded trucks, fixed price agreed before we lift a box. Apartments, villas and offices — with storage if you need it.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<style>
+:root{
+  --white:#FFFFFF; --paper:#F6F5F2; --ink:#17141D; --ink-soft:#6B6572;
+  --purple:#6D28D9; --purple-deep:#5B21B6; --purple-dim:#EFE9FB;
+  --kraft:#C9A876; --line:#E6E3DD;
+  --mono:'IBM Plex Mono',monospace; --disp:'Space Grotesk',sans-serif; --sans:'Inter',sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:var(--sans);background:var(--white);color:var(--ink);overflow-x:hidden;padding-bottom:76px;}
+a{color:inherit;text-decoration:none;}
+::selection{background:var(--purple);color:#fff;}
+a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible{outline:2px solid var(--purple);outline-offset:3px;}
+@media (prefers-reduced-motion: reduce){*{animation-duration:.01ms !important;transition-duration:.01ms !important;}}
+
+header{position:fixed;top:0;left:0;right:0;z-index:600;background:rgba(255,255,255,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);}
+.header-inner{max-width:1200px;margin:0 auto;padding:15px 5vw;display:flex;align-items:center;justify-content:space-between;gap:20px;}
+.logo-wrap img{height:42px;}
+.head-right{display:flex;align-items:center;gap:22px;}
+.head-right a.link{font-size:13.5px;color:var(--ink-soft);}
+.head-right a.link:hover{color:var(--ink);}
+.dd{position:relative;}
+.dd-toggle{display:inline-flex;align-items:center;gap:4px;background:none;border:none;padding:0;font:inherit;cursor:pointer;color:var(--ink-soft);}
+.dd-toggle:hover{color:var(--ink);}
+.dd-toggle .chev{width:7px;height:7px;border-right:1.5px solid currentColor;border-bottom:1.5px solid currentColor;transform:rotate(45deg);margin-top:-4px;transition:transform .2s ease;}
+.dd:hover .dd-toggle .chev,.dd:focus-within .dd-toggle .chev{transform:rotate(225deg);margin-top:2px;}
+.dd-menu{position:absolute;top:100%;left:50%;margin-top:14px;background:#fff;border:1px solid var(--line);border-radius:12px;box-shadow:0 16px 36px rgba(23,20,29,.14);padding:6px;min-width:140px;opacity:0;visibility:hidden;transform:translate(-50%,4px);transition:opacity .18s ease,transform .18s ease,visibility .18s;}
+.dd:hover .dd-menu,.dd:focus-within .dd-menu{opacity:1;visibility:visible;transform:translate(-50%,0);}
+.dd-menu a{display:block;padding:9px 12px;border-radius:8px;font-size:13.5px;color:var(--ink-soft);white-space:nowrap;}
+.dd-menu a:hover{background:var(--purple-dim);color:var(--ink);}
+.tel{font-family:var(--mono);font-size:13px;color:var(--ink-soft);}
+.nav-cta{background:var(--purple);color:#fff;padding:9px 18px;border-radius:100px;font-weight:600;font-size:13px;}
+.nav-cta:hover{background:var(--purple-deep);}
+@media(max-width:720px){.head-right a.link,.tel{display:none;}}
+
+.wrap{max-width:1200px;margin:0 auto;padding:0 5vw;}
+.eyebrow{font-family:var(--mono);font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--purple);display:flex;align-items:center;gap:12px;margin-bottom:14px;}
+.eyebrow::before{content:'';width:24px;height:1px;background:var(--purple);}
+h1{font-family:var(--disp);font-weight:700;font-size:clamp(2.1rem,4.6vw,3.4rem);line-height:1.05;letter-spacing:-.02em;max-width:17ch;}
+h2{font-family:var(--disp);font-weight:700;font-size:clamp(1.7rem,3.2vw,2.4rem);line-height:1.08;max-width:20ch;}
+h3{font-family:var(--disp);font-weight:600;font-size:1.12rem;}
+.lede{color:var(--ink-soft);font-size:1.05rem;margin-top:16px;max-width:54ch;line-height:1.62;}
+section{padding:92px 0;}
+.reveal{opacity:0;transform:translateY(22px);}
+.btn{display:inline-flex;align-items:center;gap:9px;background:var(--purple);color:#fff;border:none;cursor:pointer;padding:14px 26px;border-radius:100px;font-family:var(--disp);font-weight:600;font-size:14px;}
+.btn:hover{background:var(--purple-deep);}
+.btn.ghost{background:transparent;color:var(--ink);border:1px solid var(--line);}
+.btn.ghost:hover{border-color:var(--ink);}
+
+/* hero */
+.hero{position:relative;height:88vh;min-height:540px;display:flex;flex-direction:column;justify-content:flex-end;padding:0 5vw 70px;overflow:hidden;}
+.hero video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;}
+.hero::before{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(23,20,29,.3) 0%,rgba(23,20,29,.15) 40%,rgba(23,20,29,.8) 100%);}
+.hero-in{position:relative;z-index:2;max-width:1200px;margin:0 auto;width:100%;}
+.hero .eyebrow{color:#fff;}
+.hero .eyebrow::before{background:var(--kraft);}
+.hero h1{color:#fff;}
+.hero p{color:rgba(255,255,255,.85);font-size:1.05rem;margin-top:18px;max-width:48ch;line-height:1.6;}
+.hero-acts{display:flex;gap:12px;margin-top:30px;flex-wrap:wrap;}
+.hero .btn.ghost{color:#fff;border-color:rgba(255,255,255,.35);}
+.hero .btn.ghost:hover{border-color:#fff;background:rgba(255,255,255,.08);}
+
+/* promise strip */
+.promise{background:var(--ink);color:#fff;padding:0;}
+.promise-in{max-width:1200px;margin:0 auto;padding:42px 5vw;display:grid;grid-template-columns:repeat(4,1fr);gap:34px;}
+.pr .n{font-family:var(--mono);font-size:11px;color:var(--kraft);letter-spacing:.12em;}
+.pr h4{font-family:var(--disp);font-size:1rem;font-weight:600;margin-top:8px;}
+.pr p{font-size:.87rem;color:rgba(255,255,255,.62);margin-top:6px;line-height:1.5;}
+@media(max-width:860px){.promise-in{grid-template-columns:repeat(2,1fr);gap:26px;}}
+
+/* pricing */
+.pricing{background:var(--white);}
+.price-list{margin-top:40px;}
+.price-row{display:grid;grid-template-columns:1fr 190px 190px 150px;gap:24px;align-items:center;background:#fff;border:1px solid var(--line);border-radius:14px;padding:22px 26px;margin-bottom:11px;transition:border-color .25s;cursor:pointer;}
+.price-row:hover{border-color:var(--purple);}
+.price-row .home{font-family:var(--disp);font-weight:600;font-size:1.05rem;}
+.price-row .sub{font-size:.85rem;color:var(--ink-soft);margin-top:3px;}
+.price-row .dur{font-family:var(--mono);font-size:.86rem;color:var(--ink-soft);}
+.price-row .amt{font-family:var(--mono);font-size:1.02rem;}
+.price-row .act{font-family:var(--disp);font-weight:600;font-size:12.5px;color:var(--purple);text-align:right;}
+@media(max-width:900px){.price-row{grid-template-columns:1fr 1fr;}.price-row .act{text-align:left;}}
+.note{font-family:var(--mono);font-size:12px;color:var(--ink-soft);margin-top:20px;background:var(--paper);border:1px solid var(--line);border-radius:10px;padding:14px 16px;max-width:64ch;line-height:1.6;}
+
+/* what we do */
+.does{background:var(--paper);}
+.do-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:14px;overflow:hidden;margin-top:40px;}
+.do{background:#fff;padding:30px 26px;}
+.do .n{font-family:var(--mono);font-size:11px;color:var(--purple);letter-spacing:.1em;}
+.do h3{margin-top:10px;}
+.do p{font-size:.9rem;color:var(--ink-soft);margin-top:8px;line-height:1.55;}
+@media(max-width:800px){.do-grid{grid-template-columns:1fr;}}
+
+/* timeline */
+.day{background:var(--white);}
+.tl{margin-top:44px;position:relative;padding-left:34px;}
+.tl::before{content:'';position:absolute;left:7px;top:6px;bottom:6px;width:2px;background:var(--line);}
+.tl-fill{position:absolute;left:7px;top:6px;width:2px;height:0%;background:var(--purple);}
+.tl-item{position:relative;padding-bottom:40px;}
+.tl-item::before{content:'';position:absolute;left:-34px;top:5px;width:16px;height:16px;border-radius:50%;background:#fff;border:2px solid var(--line);}
+.tl-item.on::before{border-color:var(--purple);background:var(--purple);}
+.tl-item .t{font-family:var(--mono);font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--purple);}
+.tl-item h3{margin-top:6px;}
+.tl-item p{font-size:.92rem;color:var(--ink-soft);margin-top:6px;line-height:1.6;max-width:56ch;}
+
+/* addons */
+.addons{background:var(--paper);}
+.add-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-top:38px;}
+.add{background:#fff;border:1px solid var(--line);border-radius:12px;padding:24px 26px;display:flex;gap:16px;align-items:flex-start;}
+.add .k{color:var(--purple);font-family:var(--mono);flex-shrink:0;}
+.add .at{font-family:var(--disp);font-weight:600;font-size:1rem;}
+.add .ad{font-size:.88rem;color:var(--ink-soft);margin-top:5px;line-height:1.55;}
+@media(max-width:760px){.add-grid{grid-template-columns:1fr;}}
+
+/* combo */
+.combo{background:var(--ink);color:#fff;}
+.combo-in{display:grid;grid-template-columns:1.1fr .9fr;gap:56px;align-items:center;}
+.combo h2{color:#fff;}
+.combo .lede{color:rgba(255,255,255,.68);}
+.combo-card{background:#fff;color:var(--ink);border-radius:18px;padding:34px;}
+.combo-card .tag{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--purple);}
+.combo-card h3{font-size:1.4rem;margin-top:8px;}
+.combo-card p{font-size:.92rem;color:var(--ink-soft);margin-top:10px;line-height:1.6;}
+.combo-card .btn{width:100%;justify-content:center;margin-top:20px;}
+@media(max-width:860px){.combo-in{grid-template-columns:1fr;}}
+
+/* faq */
+.faq{background:var(--white);}
+.acc{max-width:800px;margin-top:34px;}
+.acc-item{border-bottom:1px solid var(--line);}
+.acc-q{width:100%;background:none;border:none;text-align:left;padding:22px 0;cursor:pointer;display:flex;justify-content:space-between;align-items:center;font-family:var(--disp);font-size:1.03rem;font-weight:600;color:var(--ink);}
+.acc-q .pl{font-family:var(--mono);font-size:1.15rem;color:var(--purple);transition:transform .3s;flex-shrink:0;margin-left:18px;}
+.acc-item.open .pl{transform:rotate(45deg);}
+.acc-a{max-height:0;overflow:hidden;transition:max-height .38s ease;}
+.acc-a p{padding-bottom:20px;color:var(--ink-soft);line-height:1.62;max-width:62ch;}
+
+/* quote */
+.quote{background:var(--paper);}
+.q-grid{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center;}
+.qcard{background:#fff;border:1px solid var(--line);border-radius:18px;padding:34px;}
+.qcard label{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft);display:block;margin-top:16px;margin-bottom:7px;}
+.qcard input,.qcard select{width:100%;background:#fff;border:1px solid var(--line);border-radius:9px;padding:14px 15px;font-size:14px;font-family:var(--sans);color:var(--ink);}
+.qcard .go{width:100%;margin-top:22px;justify-content:center;}
+.qcard .fine{font-family:var(--mono);font-size:11px;color:var(--ink-soft);margin-top:12px;text-align:center;}
+@media(max-width:860px){.q-grid{grid-template-columns:1fr;}}
+
+.sticky-bar{position:fixed;bottom:0;left:0;right:0;z-index:650;background:rgba(255,255,255,.96);backdrop-filter:blur(10px);border-top:1px solid var(--line);padding:12px 5vw;display:flex;align-items:center;justify-content:space-between;gap:16px;}
+.sticky-bar .sb-txt{font-size:13px;color:var(--ink-soft);}
+.sticky-bar .sb-txt b{color:var(--ink);font-family:var(--disp);}
+.sticky-bar .sb-act{display:flex;gap:10px;flex-shrink:0;}
+.sticky-bar .btn{padding:11px 20px;font-size:13px;}
+@media(max-width:640px){.sticky-bar .sb-txt{display:none;}.sticky-bar{justify-content:center;}.sticky-bar .sb-act{width:100%;}.sticky-bar .btn{flex:1;justify-content:center;}}
+
+
+/* ---------- SITE FOOTER ---------- */
+footer.site{background:var(--ink);color:rgba(255,255,255,.6);padding:64px 5vw 26px;border-top:none;display:block;}
+footer.site .fin{max-width:1280px;margin:0 auto;}
+footer.site .fgrid{display:grid;grid-template-columns:1.5fr 1fr 1fr 1.2fr;gap:44px;padding-bottom:44px;border-bottom:1px solid rgba(255,255,255,.12);}
+footer.site .brand img{height:26px;filter:brightness(0) invert(1);margin-bottom:16px;}
+footer.site .tagline{font-family:var(--disp);font-size:1.05rem;color:#fff;line-height:1.4;margin-bottom:14px;}
+footer.site p,footer.site a{font-size:.9rem;line-height:1.75;color:rgba(255,255,255,.62);display:block;}
+footer.site a:hover{color:var(--kraft);}
+footer.site h5{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--kraft);margin-bottom:14px;}
+footer.site .chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px;}
+footer.site .chips span{font-family:var(--mono);font-size:10px;letter-spacing:.05em;text-transform:uppercase;color:rgba(255,255,255,.6);border:1px solid rgba(255,255,255,.18);padding:5px 11px;border-radius:100px;}
+footer.site .fcta{display:inline-flex;align-items:center;gap:8px;background:var(--purple);color:#fff;padding:11px 20px;border-radius:100px;font-family:var(--disp);font-weight:600;font-size:13px;margin-top:16px;}
+footer.site .fcta:hover{background:#8B5CF6;color:#fff;}
+footer.site .fbot{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;padding-top:22px;font-size:12px;color:rgba(255,255,255,.45);}
+footer.site .fbot a{display:inline;font-size:12px;color:rgba(255,255,255,.45);}
+@media(max-width:900px){footer.site .fgrid{grid-template-columns:1fr 1fr;gap:32px;}}
+@media(max-width:560px){footer.site .fgrid{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <div class="logo-wrap"><a href="index.html"><img src="https://purplebox.ae/wp-content/uploads/2026/05/logo-1.png" alt="PurpleBox"></a></div>
+    <div class="head-right">
+      <a class="link" href="index.html">Home</a>
+      <a class="link" href="reserve-unit.html">Reserve Unit</a>
+      <a class="link" href="packing-moving.html" style="color:var(--purple);font-weight:600;">Packing &amp; Moving</a>
+      <a class="link" href="size-guide.html">Size Guide</a>
+      <a class="link" href="supplies.html">Supplies</a>
+      <div class="dd">
+        <button class="dd-toggle" type="button">About us<span class="chev"></span></button>
+        <div class="dd-menu">
+          <a href="about.html">About</a>
+          <a href="contact.html">Contact</a>
+        </div>
+      </div>
+
+      <a class="tel" href="tel:+971542249946">+971 54 224 9946</a>
+      <a class="nav-cta" href="#quote">Get a quote</a>
+    </div>
+  </div>
+</header>
+
+<section class="hero">
+  <video autoplay muted loop playsinline>
+    <source src="https://purplebox.ae/wp-content/uploads/2026/06/packing-moving.mp4" type="video/mp4">
+  </video>
+  <div class="hero-in">
+    <div class="eyebrow">Packing &amp; moving</div>
+    <h1>A fixed price, agreed before we lift a single box.</h1>
+    <p>Trained crews, padded trucks and proper materials. Apartments, villas and offices across Dubai — packed, moved, and stored if you need it.</p>
+    <div class="hero-acts">
+      <a class="btn" href="#quote">Get my quote →</a>
+      <a class="btn ghost" href="#pricing">See prices</a>
+    </div>
+  </div>
+</section>
+
+<section class="promise">
+  <div class="promise-in">
+    <div class="pr"><div class="n">01</div><h4>Fixed price first</h4><p>We survey, we quote, you approve. The number doesn't move on move day.</p></div>
+    <div class="pr"><div class="n">02</div><h4>Everything wrapped</h4><p>Furniture blankets, corner protectors and proper cartons. Nothing travels loose.</p></div>
+    <div class="pr"><div class="n">03</div><h4>One team throughout</h4><p>The crew that packs you is the crew that moves you — and stores you if needed.</p></div>
+    <div class="pr"><div class="n">04</div><h4>Real people on WhatsApp</h4><p>Message and get a person, not a ticket. Changes and questions answered fast.</p></div>
+  </div>
+</section>
+
+<section class="pricing" id="pricing">
+  <div class="wrap">
+    <div class="eyebrow reveal">Guide pricing</div>
+    <h2 class="reveal">What a Dubai move typically costs.</h2>
+    <p class="lede reveal">These are honest starting ranges for a standard move within Dubai. Your final number is fixed after a quick walkthrough — in person or over a WhatsApp video call. Tap a row to get quoted for it.</p>
+    <div class="price-list" id="price-list"></div>
+    <div class="note">What moves the price: floor level and lift access, long carries from the truck to the door, packing services, disassembly and reassembly, storage in between, and anything oversized like a piano, gym equipment or a safe. All of it gets confirmed before you commit.</div>
+  </div>
+</section>
+
+<section class="does">
+  <div class="wrap">
+    <div class="eyebrow reveal">What the crew does</div>
+    <h2 class="reveal">Included in every move.</h2>
+    <div class="do-grid">
+      <div class="do reveal"><div class="n">01</div><h3>Full wrapping</h3><p>Furniture blankets on every soft surface, corner protectors on wood, shrink wrap on drawers and doors so nothing swings open in transit.</p></div>
+      <div class="do reveal"><div class="n">02</div><h3>Disassembly &amp; reassembly</h3><p>Beds, wardrobes, dining tables and shelving come apart at the old place and go back together at the new one. Fittings bagged and labelled.</p></div>
+      <div class="do reveal"><div class="n">03</div><h3>Padded trucks</h3><p>Closed, padded vehicles with tie-downs. Nothing rides loose, nothing sits in the sun on the back of an open pickup.</p></div>
+      <div class="do reveal"><div class="n">04</div><h3>Labelled cartons</h3><p>Boxes marked by room so unloading goes to the right place and unpacking isn't a treasure hunt through forty identical boxes.</p></div>
+      <div class="do reveal"><div class="n">05</div><h3>Placement at the new home</h3><p>Furniture goes where you want it, not dumped in the hallway. Tell the crew the layout and they'll set it out.</p></div>
+      <div class="do reveal"><div class="n">06</div><h3>Debris cleared</h3><p>Used cartons, wrap and tape taken away at the end so you're not left with a mountain of cardboard on day one.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="day" id="day">
+  <div class="wrap">
+    <div class="eyebrow reveal">Move day</div>
+    <h2 class="reveal">How the day actually runs.</h2>
+    <p class="lede reveal">A typical 2-bedroom apartment move, start to finish. Bigger homes follow the same shape over a longer day.</p>
+    <div class="tl" id="tl">
+      <div class="tl-fill" id="tl-fill"></div>
+      <div class="tl-item"><div class="t">Before the day — survey</div><h3>We see what's moving</h3><p>A walkthrough in person or over WhatsApp video. We count the furniture, check lift access and parking at both ends, and agree the fixed price and the crew size.</p></div>
+      <div class="tl-item"><div class="t">08:00 — arrival</div><h3>Crew arrives and protects the space</h3><p>Floor runners and door protection go down first. The team leader walks the home with you and confirms what's moving, what's staying, and anything fragile that needs special handling.</p></div>
+      <div class="tl-item"><div class="t">08:30 — packing</div><h3>Everything gets wrapped and boxed</h3><p>Kitchen and breakables first, then wardrobes, then the rest. Boxes labelled by room as they're sealed. If you've packed some yourself, we check the seals and load them with the rest.</p></div>
+      <div class="tl-item"><div class="t">11:00 — disassembly &amp; load</div><h3>Furniture comes apart and goes in</h3><p>Beds and wardrobes are broken down, fittings bagged and taped to the frame. Heaviest items load first and get tied down, then boxes fill the gaps.</p></div>
+      <div class="tl-item"><div class="t">13:00 — transit</div><h3>Straight to the new place or to storage</h3><p>If your new home isn't ready, the truck goes to Al Quoz and everything goes into a climate-controlled unit instead — same team, no second company involved.</p></div>
+      <div class="tl-item"><div class="t">14:00 — unload &amp; rebuild</div><h3>Placed, rebuilt, and set out</h3><p>Boxes go to the right rooms, furniture is reassembled and positioned where you want it. Beds go back together first so there's somewhere to sleep that night.</p></div>
+      <div class="tl-item"><div class="t">16:00 — walkthrough</div><h3>Final check, packaging cleared</h3><p>You walk the home with the team leader, flag anything out of place, and we take the used cartons and wrap away with us.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="addons">
+  <div class="wrap">
+    <div class="eyebrow reveal">Optional extras</div>
+    <h2 class="reveal">Add what you need, skip what you don't.</h2>
+    <div class="add-grid">
+      <div class="add reveal"><span class="k">✦</span><div><div class="at">Full packing service</div><div class="ad">We pack everything, including the kitchen and wardrobes. The most common add-on and the one that saves the most time.</div></div></div>
+      <div class="add reveal"><span class="k">✦</span><div><div class="at">Partial packing</div><div class="ad">You do the clothes and books, we handle the fragile and awkward things — glassware, art, TVs and mirrors.</div></div></div>
+      <div class="add reveal"><span class="k">✦</span><div><div class="at">Unpacking at the new home</div><div class="ad">Boxes emptied, contents placed on surfaces and in cupboards, and all packaging removed the same day.</div></div></div>
+      <div class="add reveal"><span class="k">✦</span><div><div class="at">Storage in between</div><div class="ad">Handover dates rarely line up. We hold everything in a climate-controlled unit and deliver when you're ready.</div></div></div>
+      <div class="add reveal"><span class="k">✦</span><div><div class="at">Handyman work</div><div class="ad">TV wall mounting, curtain rails and light fittings at the new place while the crew is already there.</div></div></div>
+      <div class="add reveal"><span class="k">✦</span><div><div class="at">Packing materials only</div><div class="ad">Doing it yourself? We drop boxes, tape, bubble wrap and covers to your door before the move.</div></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="combo">
+  <div class="wrap combo-in">
+    <div>
+      <div class="eyebrow" style="color:var(--kraft);">Move + store</div>
+      <h2>When the dates don't line up.</h2>
+      <p class="lede">This is the situation nobody plans for: you're out on the 30th and in on the 15th. Most people end up paying a mover and then a separate storage company, coordinating between two teams who blame each other when something goes wrong.</p>
+      <p class="lede">We do both. The crew that packs your home drives it to our own facility in Al Quoz, puts it in a climate-controlled unit, and brings it back out when your new place is ready — one price, one team, one phone number.</p>
+    </div>
+    <div class="combo-card">
+      <div class="tag">Move with us</div>
+      <h3>Discounted first month of storage</h3>
+      <p>Book a Dubai move with PurpleBox and your first month of storage comes at a discount — whether it's a week between handovers or several months while you decide.</p>
+      <p style="font-family:var(--mono);font-size:12px;">✦ Climate-controlled &nbsp;✦ 24/7 access &nbsp;✦ Al Quoz 2</p>
+      <button class="btn" id="combo-btn">Ask about move + store</button>
+    </div>
+  </div>
+</section>
+
+<section class="faq" id="faq">
+  <div class="wrap">
+    <div class="eyebrow reveal">Questions</div>
+    <h2 class="reveal">Before you book a move.</h2>
+    <div class="acc">
+      <div class="acc-item reveal"><button class="acc-q">How do I get an accurate quote?<span class="pl">+</span></button><div class="acc-a"><p>A short walkthrough — in person or over a WhatsApp video call — where we see the furniture, the access at both ends, and anything unusual. Once you approve the number it's fixed.</p></div></div>
+      <div class="acc-item reveal"><button class="acc-q">How far in advance should I book?<span class="pl">+</span></button><div class="acc-a"><p>A week is comfortable. Month-end and the last few days before a lease expires are the busiest slots in Dubai, so book those earlier. We do handle short-notice moves when crews are free.</p></div></div>
+      <div class="acc-item reveal"><button class="acc-q">What if my new place isn't ready?<span class="pl">+</span></button><div class="acc-a"><p>Everything goes into one of our climate-controlled units in Al Quoz and comes back out when you are ready. Same team throughout, and the first month of storage is discounted when you move with us.</p></div></div>
+      <div class="acc-item reveal"><button class="acc-q">Do you move offices?<span class="pl">+</span></button><div class="acc-a"><p>Yes — desks, workstations, server racks, filing and stock. Office moves usually run outside business hours so nobody loses a working day. Send us the floor plan and headcount for a quote.</p></div></div>
+      <div class="acc-item reveal"><button class="acc-q">What can't you move?<span class="pl">+</span></button><div class="acc-a"><p>Nothing hazardous — gas cylinders, fuel, paint, fireworks — and no live plants or perishable food over long holds. Pianos, safes and gym equipment are fine but need to be flagged in advance so we bring the right kit.</p></div></div>
+      <div class="acc-item reveal"><button class="acc-q">What happens if something is damaged?<span class="pl">+</span></button><div class="acc-a"><p>Tell the team leader at the walkthrough before they leave, or message us the same day with photos. We'll go through it with you and put it right. Talk to us about coverage options for high-value items before the move.</p></div></div>
+      <div class="acc-item reveal"><button class="acc-q">Do you move between emirates?<span class="pl">+</span></button><div class="acc-a"><p>Yes — Abu Dhabi, Sharjah, Ajman and the rest of the UAE. Intercity moves are quoted individually since travel time and tolls change the number.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="quote" id="quote">
+  <div class="wrap q-grid">
+    <div>
+      <div class="eyebrow">Get a quote</div>
+      <h2>Tell us what's moving.</h2>
+      <p class="lede">Send the basics and we'll come back within 15 minutes to arrange the walkthrough and confirm your fixed price. No obligation, and no charge for the survey.</p>
+      <p class="lede" style="font-family:var(--mono);font-size:12.5px;">✦ Fixed price before move day &nbsp;✦ Padded trucks &nbsp;✦ Storage available</p>
+    </div>
+    <div class="qcard">
+      <label for="q-home">What are you moving?</label>
+      <select id="q-home"></select>
+      <label for="q-name">Your name</label>
+      <input type="text" id="q-name" placeholder="Full name">
+      <label for="q-phone">Phone number</label>
+      <input type="tel" id="q-phone" placeholder="+971 5X XXX XXXX">
+      <label for="q-from">Moving from → to</label>
+      <input type="text" id="q-from" placeholder="e.g. JVC → Dubai Marina">
+      <label for="q-when">When?</label>
+      <select id="q-when"><option>As soon as possible</option><option>This week</option><option>This month</option><option>Next month</option><option>Just planning ahead</option></select>
+      <label for="q-store">Need storage in between?</label>
+      <select id="q-store"><option>No, straight to the new place</option><option>Yes, for a few weeks</option><option>Yes, for a few months</option><option>Not sure yet</option></select>
+      <button class="btn go" id="q-go">Get my quote on WhatsApp</button>
+      <div class="fine">15-min reply · Free survey · No obligation</div>
+    </div>
+  </div>
+</section>
+
+<div class="sticky-bar">
+  <div class="sb-txt">Moving: <b id="sb-home">not selected yet</b></div>
+  <div class="sb-act">
+    <a class="btn ghost" href="tel:+971542249946">Call</a>
+    <a class="btn" href="#quote">Get a quote</a>
+  </div>
+</div>
+
+<footer class="site">
+  <div class="fin">
+    <div class="fgrid">
+      <div>
+        <div class="brand"><img src="https://purplebox.ae/wp-content/uploads/2026/05/logo-1.png" alt="PurpleBox"></div>
+        <div class="tagline">We Pack, Move &amp; Store Everything</div>
+        <p>Climate-controlled self-storage, packing and moving in Dubai — one team from your door to your unit and back.</p>
+        <div class="chips"><span>Climate controlled</span><span>24/7 CCTV</span><span>SIRA compliant</span><span>DM &amp; Civil Defence approved</span></div>
+      </div>
+
+      <div>
+        <h5>Services</h5>
+        <a href="reserve-unit.html">Reserve a unit</a>
+        <a href="size-guide.html">Size guide</a>
+        <a href="packing-moving.html">Packing &amp; moving</a>
+        <a href="supplies.html">Packing supplies</a>
+        <a href="packing-moving.html#quote">Move + store</a>
+      </div>
+
+      <div>
+        <h5>Company</h5>
+        <a href="index.html">Home</a>
+        <a href="about.html">About us</a>
+        <a href="contact.html">Contact</a>
+        <a href="reserve-unit.html#faq">FAQ</a>
+        <a href="https://wa.me/971542249946" target="_blank" rel="noopener">WhatsApp us</a>
+      </div>
+
+      <div>
+        <h5>Visit &amp; contact</h5>
+        <p>ABA Avenue — Unit 12, 12th Street<br>Al Quoz Industrial Area 2<br>Dubai, United Arab Emirates</p>
+        <a href="tel:+971542249946">+971 54 224 9946</a>
+        <a href="mailto:contact@purplebox.ae">contact@purplebox.ae</a>
+        <p style="margin-top:8px;">Unit access: 24 hours, 7 days</p>
+        <a class="fcta" href="https://wa.me/971542249946" target="_blank" rel="noopener">Chat on WhatsApp</a>
+      </div>
+    </div>
+
+    <div class="fbot">
+      <span>© 2026 Short Term Storage LLC — Dubai, UAE. All rights reserved.</span>
+      <span><a href="#">Privacy Policy</a> · <a href="#">Terms &amp; Conditions</a></span>
+    </div>
+  </div>
+</footer>
+
+<script>
+gsap.registerPlugin(ScrollTrigger);const WA='https://wa.me/971542249946?text=';
+
+const MOVES=[
+ {home:'Studio apartment', sub:'One room, minimal furniture',        dur:'3–5 hrs',  price:'AED 1,000–1,200'},
+ {home:'1BHK apartment',   sub:'One bedroom plus living room',        dur:'4–6 hrs',  price:'AED 1,250–1,500'},
+ {home:'2BHK apartment',   sub:'Two bedrooms, standard furniture',    dur:'5–7 hrs',  price:'AED 1,700–2,100'},
+ {home:'3BHK apartment',   sub:'Three bedrooms, full home',           dur:'6–9 hrs',  price:'AED 2,300–2,800'},
+ {home:'2BHK villa',       sub:'Two bedrooms, garden items',          dur:'5–8 hrs',  price:'AED 2,300–2,500'},
+ {home:'3BHK villa',       sub:'Three bedrooms across two floors',    dur:'6–9 hrs',  price:'AED 2,700–3,500'},
+ {home:'4BHK villa',       sub:'Four bedrooms, large volume',         dur:'7–10 hrs', price:'AED 3,500–4,500'},
+ {home:'5BHK villa',       sub:'Five bedrooms, full day operation',   dur:'8–14 hrs', price:'AED 5,000–7,000'},
+ {home:'Office or other',  sub:'Workstations, stock, server racks',   dur:'Varies',   price:'Free estimate'},
+];
+
+/* rows */
+const pl=document.getElementById('price-list');
+MOVES.forEach((m,i)=>{
+  const r=document.createElement('div');
+  r.className='price-row reveal';
+  r.innerHTML=`<div><div class="home">${m.home}</div><div class="sub">${m.sub}</div></div>
+    <div class="dur">${m.dur}</div><div class="amt">${m.price}</div>
+    <div class="act">Quote this →</div>`;
+  r.addEventListener('click',()=>{pick(i);document.getElementById('quote').scrollIntoView({behavior:'smooth'});});
+  pl.appendChild(r);
+});
+
+/* dropdown */
+const hs=document.getElementById('q-home');
+hs.innerHTML='<option value="-1">Not sure yet</option>'+MOVES.map((m,i)=>`<option value="${i}">${m.home} — ${m.price}</option>`).join('');
+function pick(i){
+  hs.value=String(i);
+  document.getElementById('sb-home').textContent = i<0?'not selected yet':`${MOVES[i].home} — ${MOVES[i].price}`;
+}
+hs.addEventListener('change',()=>pick(parseInt(hs.value,10)));
+
+/* quote */
+document.getElementById('q-go').addEventListener('click',()=>{
+  const i=parseInt(hs.value,10);
+  const n=document.getElementById('q-name').value.trim();
+  const p=document.getElementById('q-phone').value.trim();
+  const f=document.getElementById('q-from').value.trim();
+  const w=document.getElementById('q-when').value;
+  const s=document.getElementById('q-store').value;
+  const what = i<0 ? "a move (size not confirmed yet)" : `a ${MOVES[i].home} move`;
+  const msg=`Hi, I'd like a quote for ${what}.`+(n?` Name: ${n}.`:'')+(p?` Phone: ${p}.`:'')+(f?` Route: ${f}.`:'')+` Timing: ${w}. Storage: ${s}.`;
+  window.open(WA+encodeURIComponent(msg),'_blank');
+});
+document.getElementById('combo-btn').addEventListener('click',()=>{
+  window.open(WA+encodeURIComponent("Hi, I'm moving in Dubai and will need storage in between. Can you quote for the move plus the discounted first month of storage?"),'_blank');
+});
+
+/* faq */
+document.querySelectorAll('.acc-item').forEach(it=>{
+  const q=it.querySelector('.acc-q'),a=it.querySelector('.acc-a');
+  q.addEventListener('click',()=>{
+    const open=it.classList.contains('open');
+    document.querySelectorAll('.acc-item.open').forEach(o=>{o.classList.remove('open');o.querySelector('.acc-a').style.maxHeight=null;});
+    if(!open){it.classList.add('open');a.style.maxHeight=a.scrollHeight+'px';}
+  });
+});
+
+/* timeline scroll fill */
+const tlItems=gsap.utils.toArray('.tl-item');
+ScrollTrigger.create({
+  trigger:'#tl',start:'top 65%',end:'bottom 75%',scrub:.5,
+  onUpdate:s=>{
+    document.getElementById('tl-fill').style.height=(s.progress*100)+'%';
+    const upto=Math.floor(s.progress*tlItems.length+0.35);
+    tlItems.forEach((it,i)=>it.classList.toggle('on',i<upto));
+  }
+});
+gsap.utils.toArray('.tl-item').forEach(it=>{
+  gsap.from(it,{opacity:0,x:-18,duration:.7,ease:'power3.out',scrollTrigger:{trigger:it,start:'top 85%'}});
+});
+
+/* reveals */
+gsap.utils.toArray('.reveal').forEach(el=>{
+  gsap.to(el,{opacity:1,y:0,duration:.8,ease:'power3.out',scrollTrigger:{trigger:el,start:'top 88%'}});
+});
+</script>
+
+</body>
+</html>

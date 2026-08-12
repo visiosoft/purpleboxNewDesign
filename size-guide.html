@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Size Guide — PurpleBox Storage Dubai</title>
+<meta name="description" content="Compare all eight PurpleBox unit sizes side by side — square footage, what fits, monthly price, and how they stack up against everyday spaces.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<style>
+:root{
+  --white:#FFFFFF;--paper:#F6F5F2;--ink:#17141D;--ink-soft:#6B6572;
+  --purple:#6D28D9;--purple-deep:#5B21B6;--purple-dim:#EFE9FB;
+  --kraft:#C9A876;--kraft-lt:#E3D2AF;--line:#E6E3DD;
+  --mono:'IBM Plex Mono',monospace;--disp:'Space Grotesk',sans-serif;--sans:'Inter',sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:var(--sans);background:var(--white);color:var(--ink);overflow-x:hidden;padding-bottom:76px;}
+a{color:inherit;text-decoration:none;}
+::selection{background:var(--purple);color:#fff;}
+a:focus-visible,button:focus-visible{outline:2px solid var(--purple);outline-offset:3px;}
+@media (prefers-reduced-motion:reduce){*{animation-duration:.01ms !important;transition-duration:.01ms !important;}}
+
+header{position:fixed;top:0;left:0;right:0;z-index:600;background:rgba(255,255,255,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);}
+.header-inner{max-width:1200px;margin:0 auto;padding:15px 5vw;display:flex;align-items:center;justify-content:space-between;gap:20px;}
+.logo-wrap img{height:42px;}
+.head-right{display:flex;align-items:center;gap:22px;}
+.head-right a.link{font-size:13.5px;color:var(--ink-soft);}
+.head-right a.link:hover{color:var(--ink);}
+.dd{position:relative;}
+.dd-toggle{display:inline-flex;align-items:center;gap:4px;background:none;border:none;padding:0;font:inherit;cursor:pointer;color:var(--ink-soft);}
+.dd-toggle:hover{color:var(--ink);}
+.dd-toggle .chev{width:7px;height:7px;border-right:1.5px solid currentColor;border-bottom:1.5px solid currentColor;transform:rotate(45deg);margin-top:-4px;transition:transform .2s ease;}
+.dd:hover .dd-toggle .chev,.dd:focus-within .dd-toggle .chev{transform:rotate(225deg);margin-top:2px;}
+.dd-menu{position:absolute;top:100%;left:50%;margin-top:14px;background:#fff;border:1px solid var(--line);border-radius:12px;box-shadow:0 16px 36px rgba(23,20,29,.14);padding:6px;min-width:140px;opacity:0;visibility:hidden;transform:translate(-50%,4px);transition:opacity .18s ease,transform .18s ease,visibility .18s;}
+.dd:hover .dd-menu,.dd:focus-within .dd-menu{opacity:1;visibility:visible;transform:translate(-50%,0);}
+.dd-menu a{display:block;padding:9px 12px;border-radius:8px;font-size:13.5px;color:var(--ink-soft);white-space:nowrap;}
+.dd-menu a:hover{background:var(--purple-dim);color:var(--ink);}
+.tel{font-family:var(--mono);font-size:13px;color:var(--ink-soft);}
+.nav-cta{background:var(--purple);color:#fff;padding:9px 18px;border-radius:100px;font-weight:600;font-size:13px;}
+.nav-cta:hover{background:var(--purple-deep);}
+@media(max-width:820px){.head-right a.link,.tel{display:none;}}
+#sprog{position:fixed;top:0;left:0;height:3px;width:0%;background:var(--purple);z-index:700;}
+
+.wrap{max-width:1200px;margin:0 auto;padding:0 5vw;}
+.eyebrow{font-family:var(--mono);font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--purple);display:flex;align-items:center;gap:12px;margin-bottom:14px;}
+.eyebrow::before{content:'';width:24px;height:1px;background:var(--purple);}
+h1{font-family:var(--disp);font-weight:700;font-size:clamp(2.1rem,4.6vw,3.4rem);line-height:1.05;letter-spacing:-.02em;max-width:17ch;}
+h2{font-family:var(--disp);font-weight:700;font-size:clamp(1.7rem,3.2vw,2.4rem);line-height:1.08;max-width:20ch;}
+.lede{color:var(--ink-soft);font-size:1.05rem;margin-top:16px;max-width:54ch;line-height:1.62;}
+section{padding:90px 0;}
+.reveal{opacity:0;transform:translateY(22px);}
+.btn{display:inline-flex;align-items:center;gap:9px;background:var(--purple);color:#fff;border:none;cursor:pointer;padding:14px 26px;border-radius:100px;font-family:var(--disp);font-weight:600;font-size:14px;}
+.btn:hover{background:var(--purple-deep);}
+.btn.ghost{background:transparent;color:var(--ink);border:1px solid var(--line);}
+.btn.sm{padding:11px 20px;font-size:13px;}
+
+/* intro */
+.intro{padding:150px 0 70px;background:var(--paper);border-bottom:1px solid var(--line);}
+.intro .top{display:flex;align-items:flex-end;justify-content:space-between;gap:40px;flex-wrap:wrap;}
+.intro .stats{display:flex;gap:32px;flex-wrap:wrap;}
+.intro .stat{font-family:var(--mono);}
+.intro .stat b{display:block;font-family:var(--disp);font-size:1.6rem;color:var(--ink);}
+.intro .stat span{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-soft);}
+
+/* size cards */
+.sizes{background:var(--white);}
+.size-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:40px;}
+.card{border:1px solid var(--line);border-radius:16px;padding:20px;background:#fff;transition:border-color .25s,box-shadow .25s,transform .25s;display:flex;flex-direction:column;}
+.card:hover{border-color:var(--purple);box-shadow:0 22px 44px rgba(23,20,29,.1);transform:translateY(-3px);}
+.card .code{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--purple);font-weight:600;}
+.card .viz{margin-top:14px;height:120px;background:var(--paper);border:1px solid var(--line);border-radius:10px;position:relative;display:flex;align-items:flex-end;padding:8px;overflow:hidden;}
+.card .rect{position:relative;background:linear-gradient(160deg,var(--purple),#9F67F0);border-radius:4px;display:flex;align-items:center;justify-content:center;}
+.card .rect .rn{font-family:var(--disp);color:#fff;font-weight:700;font-size:.92rem;text-align:center;line-height:1.15;}
+.card .rect .rn small{display:block;font-size:.6rem;font-weight:500;opacity:.85;text-transform:uppercase;letter-spacing:.05em;}
+.card .person{position:absolute;left:12px;bottom:8px;width:8px;height:30px;z-index:2;}
+.card .person::before{content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);width:7px;height:7px;border-radius:50%;background:var(--ink);}
+.card .person::after{content:'';position:absolute;top:8px;left:50%;transform:translateX(-50%);width:8px;height:22px;border-radius:4px 4px 2px 2px;background:var(--ink);}
+.card .head{font-family:var(--disp);font-weight:600;font-size:1.02rem;margin-top:16px;}
+.card .home{font-size:12.5px;color:var(--purple);font-weight:600;margin-top:4px;}
+.card .desc{font-size:.87rem;color:var(--ink-soft);line-height:1.55;margin-top:8px;flex-grow:1;}
+.card .foot{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:18px;padding-top:14px;border-top:1px dashed var(--line);}
+.card .price{font-family:var(--mono);font-size:.86rem;}
+.card .go{font-family:var(--disp);font-weight:600;font-size:12px;color:var(--purple);background:none;border:none;cursor:pointer;padding:0;}
+.card .go:hover{color:var(--purple-deep);}
+@media(max-width:1080px){.size-grid{grid-template-columns:repeat(2,1fr);}}
+@media(max-width:520px){.size-grid{grid-template-columns:1fr;}}
+
+/* compare bars */
+.compare{background:var(--paper);border-top:1px solid var(--line);}
+.cbars{margin-top:40px;}
+.cbar{display:grid;grid-template-columns:150px 1fr 130px;gap:20px;align-items:center;padding:14px 0;border-bottom:1px solid var(--line);}
+.cbar .lbl{font-family:var(--disp);font-weight:600;font-size:.94rem;}
+.cbar .lbl small{display:block;font-family:var(--mono);font-size:10.5px;color:var(--ink-soft);font-weight:400;margin-top:2px;}
+.cbar .track{height:24px;background:#fff;border:1px solid var(--line);border-radius:100px;overflow:hidden;}
+.cbar .fill{height:100%;width:0%;background:linear-gradient(90deg,var(--purple),#9F67F0);border-radius:100px;}
+.cbar.ref .fill{background:linear-gradient(90deg,#B79968,var(--kraft-lt));}
+.cbar .val{font-family:var(--mono);font-size:.9rem;text-align:right;}
+@media(max-width:700px){.cbar{grid-template-columns:110px 1fr;}.cbar .val{display:none;}}
+
+/* packing */
+.packing{background:var(--white);}
+.pk-grid{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin-top:40px;}
+.pk-card{border:1px solid var(--line);border-radius:16px;padding:26px;background:var(--paper);}
+.pk-card.good{background:var(--purple-dim);border-color:#DCCBF6;}
+.pk-card .pk-tag{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft);}
+.pk-card.good .pk-tag{color:var(--purple);}
+.pk-card .pk-head{font-family:var(--disp);font-weight:700;font-size:1.3rem;margin-top:6px;}
+.pk-viz{margin-top:18px;height:110px;background:#fff;border:1px solid var(--line);border-radius:10px;padding:10px;display:grid;grid-template-columns:repeat(6,1fr);gap:6px;}
+.pk-viz div{background:#D9BE92;border-radius:3px;border:1px solid rgba(0,0,0,.15);}
+.pk-card.bad .pk-viz div:nth-child(1){grid-column:1/3;grid-row:1/2;transform:rotate(-6deg);}
+.pk-card.bad .pk-viz div:nth-child(2){grid-column:3/4;grid-row:1/3;transform:rotate(4deg);}
+.pk-card.bad .pk-viz div:nth-child(3){grid-column:4/6;grid-row:1/2;transform:rotate(-3deg);}
+.pk-card.bad .pk-viz div:nth-child(4){grid-column:1/2;grid-row:2/4;transform:rotate(5deg);}
+.pk-card.bad .pk-viz div:nth-child(5){grid-column:4/5;grid-row:2/3;transform:rotate(-8deg);}
+.pk-card.bad .pk-viz div:nth-child(6){grid-column:6/7;grid-row:1/3;transform:rotate(3deg);}
+.pk-card.bad .pk-viz div:nth-child(7){grid-column:2/4;grid-row:3/4;transform:rotate(-4deg);}
+.pk-card.good .pk-viz{gap:4px;}
+.pk-card.good .pk-viz div{border-radius:2px;}
+.pk-card .pk-stats{display:flex;gap:24px;margin-top:20px;}
+.pk-card .pk-stat b{display:block;font-family:var(--disp);font-size:1.4rem;}
+.pk-card .pk-stat span{font-size:11.5px;color:var(--ink-soft);}
+.pk-card .pk-note{font-size:.9rem;color:var(--ink-soft);margin-top:16px;line-height:1.55;}
+@media(max-width:820px){.pk-grid{grid-template-columns:1fr;}}
+
+.cta-band{background:var(--ink);color:#fff;text-align:center;}
+.cta-band h2{color:#fff;margin:0 auto;}
+.cta-band .lede{color:rgba(255,255,255,.62);margin-left:auto;margin-right:auto;}
+.cta-band .acts{display:flex;gap:12px;justify-content:center;margin-top:28px;flex-wrap:wrap;}
+
+.sticky-bar{position:fixed;bottom:0;left:0;right:0;z-index:650;background:rgba(255,255,255,.96);backdrop-filter:blur(10px);border-top:1px solid var(--line);padding:12px 5vw;display:flex;align-items:center;justify-content:space-between;gap:16px;}
+.sticky-bar .sb-txt{font-size:13px;color:var(--ink-soft);}
+.sticky-bar .sb-txt b{color:var(--ink);font-family:var(--disp);}
+.sticky-bar .sb-act{display:flex;gap:10px;}
+.sticky-bar .btn{padding:11px 20px;font-size:13px;}
+@media(max-width:640px){.sticky-bar .sb-txt{display:none;}.sticky-bar .sb-act{width:100%;}.sticky-bar .btn{flex:1;justify-content:center;}}
+
+/* ---------- SITE FOOTER ---------- */
+footer.site{background:var(--ink);color:rgba(255,255,255,.6);padding:64px 5vw 26px;border-top:none;display:block;}
+footer.site .fin{max-width:1280px;margin:0 auto;}
+footer.site .fgrid{display:grid;grid-template-columns:1.5fr 1fr 1fr 1.2fr;gap:44px;padding-bottom:44px;border-bottom:1px solid rgba(255,255,255,.12);}
+footer.site .brand img{height:26px;filter:brightness(0) invert(1);margin-bottom:16px;}
+footer.site .tagline{font-family:var(--disp);font-size:1.05rem;color:#fff;line-height:1.4;margin-bottom:14px;}
+footer.site p,footer.site a{font-size:.9rem;line-height:1.75;color:rgba(255,255,255,.62);display:block;}
+footer.site a:hover{color:var(--kraft);}
+footer.site h5{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--kraft);margin-bottom:14px;}
+footer.site .chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px;}
+footer.site .chips span{font-family:var(--mono);font-size:10px;letter-spacing:.05em;text-transform:uppercase;color:rgba(255,255,255,.6);border:1px solid rgba(255,255,255,.18);padding:5px 11px;border-radius:100px;}
+footer.site .fcta{display:inline-flex;align-items:center;gap:8px;background:var(--purple);color:#fff;padding:11px 20px;border-radius:100px;font-family:var(--disp);font-weight:600;font-size:13px;margin-top:16px;}
+footer.site .fcta:hover{background:#8B5CF6;color:#fff;}
+footer.site .fbot{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;padding-top:22px;font-size:12px;color:rgba(255,255,255,.45);}
+footer.site .fbot a{display:inline;font-size:12px;color:rgba(255,255,255,.45);}
+@media(max-width:900px){footer.site .fgrid{grid-template-columns:1fr 1fr;gap:32px;}}
+@media(max-width:560px){footer.site .fgrid{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
+
+<div id="sprog"></div>
+
+<header>
+  <div class="header-inner">
+    <div class="logo-wrap"><a href="index.html"><img src="https://purplebox.ae/wp-content/uploads/2026/05/logo-1.png" alt="PurpleBox"></a></div>
+    <div class="head-right">
+      <a class="link" href="index.html">Home</a>
+      <a class="link" href="reserve-unit.html">Reserve Unit</a>
+      <a class="link" href="packing-moving.html">Packing &amp; Moving</a>
+      <a class="link" href="size-guide.html" style="color:var(--purple);font-weight:600;">Size Guide</a>
+      <a class="link" href="supplies.html">Supplies</a>
+      <div class="dd">
+        <button class="dd-toggle" type="button">About us<span class="chev"></span></button>
+        <div class="dd-menu">
+          <a href="about.html">About</a>
+          <a href="contact.html">Contact</a>
+        </div>
+      </div>
+
+      <a class="tel" href="tel:+971542249946">+971 54 224 9946</a>
+      <a class="nav-cta" href="reserve-unit.html#book">Reserve Now</a>
+    </div>
+  </div>
+</header>
+
+<section class="intro">
+  <div class="wrap">
+    <div class="top">
+      <div>
+        <div class="eyebrow">Size guide</div>
+        <h1>Eight sizes, side by side.</h1>
+        <p class="lede">No guesswork — compare square footage, what fits and monthly price for every unit at once, then see how each one stacks up against spaces you already know.</p>
+      </div>
+      <div class="stats">
+        <div class="stat"><b>10–200</b><span>Sq ft range</span></div>
+        <div class="stat"><b>8</b><span>Unit sizes</span></div>
+        <div class="stat"><b>AED 350+</b><span>Starting /mo</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sizes" id="sizes">
+  <div class="wrap">
+    <div class="eyebrow reveal">All units</div>
+    <h2 class="reveal">Find your size.</h2>
+    <p class="lede reveal">Each unit shown to scale against a 1.7m person, so you can gauge the footprint at a glance.</p>
+    <div class="size-grid" id="size-grid"></div>
+  </div>
+</section>
+
+<section class="compare" id="compare">
+  <div class="wrap">
+    <div class="eyebrow reveal">Scale reference</div>
+    <h2 class="reveal">Compared to spaces you already know.</h2>
+    <p class="lede reveal">Purple bars are our units. Sand bars are everyday spaces for reference — because "100 sq ft" lands differently once you know it's about the size of a small bedroom.</p>
+    <div class="cbars" id="cbars"></div>
+  </div>
+</section>
+
+<section class="packing">
+  <div class="wrap">
+    <div class="eyebrow reveal">Packing matters</div>
+    <h2 class="reveal">The same stuff, two different units.</h2>
+    <p class="lede reveal">This is the single biggest thing people get wrong. Identical contents: packed badly they need a 75 sq ft unit, packed properly they fit in 50 — a difference of over AED 5,000 a year.</p>
+    <div class="pk-grid">
+      <div class="pk-card bad reveal">
+        <div class="pk-tag">Packed badly</div>
+        <div class="pk-head">Boxes everywhere, gaps left over</div>
+        <div class="pk-viz"><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+        <div class="pk-stats">
+          <div class="pk-stat"><b>75 sq ft</b><span>Unit needed</span></div>
+          <div class="pk-stat"><b>AED 1,400</b><span>Per month</span></div>
+        </div>
+        <p class="pk-note">Furniture left assembled, mismatched box sizes, no clear stacking plan — wastes a third of the floor as unusable gaps.</p>
+      </div>
+      <div class="pk-card good reveal">
+        <div class="pk-tag">Packed properly</div>
+        <div class="pk-head">Uniform boxes, stacked to the ceiling</div>
+        <div class="pk-viz">
+          <div></div><div></div><div></div><div></div><div></div><div></div>
+          <div></div><div></div><div></div><div></div><div></div><div></div>
+        </div>
+        <div class="pk-stats">
+          <div class="pk-stat"><b>50 sq ft</b><span>Unit needed</span></div>
+          <div class="pk-stat"><b>AED 980</b><span>Per month</span></div>
+        </div>
+        <p class="pk-note">Disassemble furniture, use uniform boxes, stack to the ceiling, and leave one walkway rather than gaps everywhere. Saves AED 5,040 a year.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-band">
+  <div class="wrap">
+    <div class="eyebrow reveal" style="justify-content:center;color:var(--kraft);">Still deciding?</div>
+    <h2 class="reveal">Talk to us — we'll size it for free.</h2>
+    <p class="lede reveal">Tell us what you're storing and we'll recommend the smallest unit that fits, no obligation.</p>
+    <div class="acts reveal">
+      <a class="btn" href="https://wa.me/971542249946?text=Hi%2C%20I%27d%20like%20help%20choosing%20a%20unit%20size." target="_blank" rel="noopener">Chat on WhatsApp</a>
+      <a class="btn ghost" style="color:#fff;border-color:rgba(255,255,255,.25);" href="tel:+971542249946">Call +971 54 224 9946</a>
+    </div>
+  </div>
+</section>
+
+<div class="sticky-bar">
+  <div class="sb-txt">Not sure which size? <b>We'll help you pick one, free.</b></div>
+  <div class="sb-act">
+    <a class="btn ghost" href="tel:+971542249946">Call</a>
+    <a class="btn" href="reserve-unit.html#book">Reserve unit</a>
+  </div>
+</div>
+
+<footer class="site">
+  <div class="fin">
+    <div class="fgrid">
+      <div>
+        <div class="brand"><img src="https://purplebox.ae/wp-content/uploads/2026/05/logo-1.png" alt="PurpleBox"></div>
+        <div class="tagline">We Pack, Move &amp; Store Everything</div>
+        <p>Climate-controlled self-storage, packing and moving in Dubai — one team from your door to your unit and back.</p>
+        <div class="chips"><span>Climate controlled</span><span>24/7 CCTV</span><span>SIRA compliant</span><span>DM &amp; Civil Defence approved</span></div>
+      </div>
+
+      <div>
+        <h5>Services</h5>
+        <a href="reserve-unit.html">Reserve a unit</a>
+        <a href="size-guide.html">Size guide</a>
+        <a href="packing-moving.html">Packing &amp; moving</a>
+        <a href="supplies.html">Packing supplies</a>
+        <a href="packing-moving.html#quote">Move + store</a>
+      </div>
+
+      <div>
+        <h5>Company</h5>
+        <a href="index.html">Home</a>
+        <a href="about.html">About us</a>
+        <a href="contact.html">Contact</a>
+        <a href="reserve-unit.html#faq">FAQ</a>
+        <a href="https://wa.me/971542249946" target="_blank" rel="noopener">WhatsApp us</a>
+      </div>
+
+      <div>
+        <h5>Visit &amp; contact</h5>
+        <p>ABA Avenue — Unit 12, 12th Street<br>Al Quoz Industrial Area 2<br>Dubai, United Arab Emirates</p>
+        <a href="tel:+971542249946">+971 54 224 9946</a>
+        <a href="mailto:contact@purplebox.ae">contact@purplebox.ae</a>
+        <p style="margin-top:8px;">Unit access: 24 hours, 7 days</p>
+        <a class="fcta" href="https://wa.me/971542249946" target="_blank" rel="noopener">Chat on WhatsApp</a>
+      </div>
+    </div>
+
+    <div class="fbot">
+      <span>© 2026 Short Term Storage LLC — Dubai, UAE. All rights reserved.</span>
+      <span><a href="#">Privacy Policy</a> · <a href="#">Terms &amp; Conditions</a></span>
+    </div>
+  </div>
+</footer>
+
+<script>
+gsap.registerPlugin(ScrollTrigger);const WA='https://wa.me/971542249946?text=';
+
+const U=[
+ {c:'XS',sq:10, home:'Boxes & suitcases', price:'AED 350 /mo',   head:'A large closet',        desc:'Around 15–20 boxes, suitcases and documents. No large furniture.'},
+ {c:'SS',sq:25, home:'Studio essentials', price:'AED 650 /mo',   head:'A small bedroom',       desc:'A 1-bed apartment: bed frame, small wardrobe, chairs and about 20 boxes.'},
+ {c:'M', sq:35, home:'2BHK apartment',    price:'AED 770 /mo',   head:'A single garage bay',   desc:'Two bedrooms of furniture, a sofa, dining table and roughly 25 boxes.'},
+ {c:'S', sq:50, home:'1BHK + spare room', price:'AED 980 /mo',   head:'A box room with space', desc:'A full 1-bed apartment with walking room left over — good for frequent visits.'},
+ {c:'M+',sq:75, home:'2–3BHK apartment',  price:'AED 1,400–1,500 /mo', head:'A large bedroom',  desc:'Sofas, beds, wardrobes, fridge, washing machine, dining set and 40+ boxes.'},
+ {c:'L', sq:100,home:'3BHK / small villa',price:'AED 1,700–2,000 /mo', head:'A small bedroom + ensuite', desc:'Three bedrooms, living and dining rooms, white goods, bicycles and boxes.'},
+ {c:'XL',sq:150,home:'4BHK villa',        price:'AED 2,600–3,000 /mo', head:'A single garage',  desc:'The contents of a four-bedroom home, or office furniture and business stock.'},
+ {c:'XXL',sq:200,home:'4–5BHK villa',     price:'AED 3,300–4,000 /mo', head:'A double garage',  desc:'Everything from a large villa, with room to walk around inside the unit.'},
+];
+
+function bookUnit(u){
+  window.open(WA+encodeURIComponent(`Hi, I'd like to reserve unit ${u.c} (${u.sq} sq ft, ${u.price}).`),'_blank');
+}
+
+/* ---------- size cards ---------- */
+const grid=document.getElementById('size-grid');
+const MINSQ=Math.sqrt(10), MAXSQ=Math.sqrt(200);
+U.forEach(u=>{
+  const pct=30+((Math.sqrt(u.sq)-MINSQ)/(MAXSQ-MINSQ))*66;
+  const card=document.createElement('div');
+  card.className='card reveal';
+  card.innerHTML=`
+    <div class="code">Unit ${u.c}</div>
+    <div class="viz">
+      <div class="rect" style="width:${pct}%;height:${pct}%;">
+        <div class="rn">${u.sq}<small>sq ft</small></div>
+      </div>
+      <div class="person"></div>
+    </div>
+    <div class="head">${u.head}</div>
+    <div class="home">Fits: ${u.home}</div>
+    <div class="desc">${u.desc}</div>
+    <div class="foot">
+      <div class="price">${u.price}</div>
+      <button class="go">Reserve →</button>
+    </div>`;
+  card.querySelector('.go').addEventListener('click',()=>bookUnit(u));
+  grid.appendChild(card);
+});
+
+/* ---------- compare bars ---------- */
+const REF=[
+ {n:'A phone box',s:8,ref:true},{n:'Unit XS',s:10},{n:'Unit SS',s:25},
+ {n:'A parking space',s:135,ref:true},{n:'Unit M',s:35},{n:'Unit S',s:50},
+ {n:'A small bedroom',s:100,ref:true},{n:'Unit M+',s:75},{n:'Unit L',s:100},
+ {n:'A single garage',s:180,ref:true},{n:'Unit XL',s:150},{n:'Unit XXL',s:200},
+].sort((a,b)=>a.s-b.s);
+const cb=document.getElementById('cbars');
+const MAX=200;
+REF.forEach(r=>{
+  const d=document.createElement('div');
+  d.className='cbar'+(r.ref?' ref':'');
+  d.innerHTML=`<div class="lbl">${r.n}<small>${r.ref?'reference':'PurpleBox unit'}</small></div>
+    <div class="track"><div class="fill" data-w="${(r.s/MAX*100).toFixed(1)}"></div></div>
+    <div class="val">${r.s} sq ft</div>`;
+  cb.appendChild(d);
+});
+gsap.utils.toArray('.cbar').forEach(bar=>{
+  const fill=bar.querySelector('.fill');
+  gsap.to(fill,{width:fill.dataset.w+'%',duration:1,ease:'power3.out',
+    scrollTrigger:{trigger:bar,start:'top 88%'}});
+  gsap.from(bar,{opacity:0,x:-14,duration:.6,ease:'power3.out',scrollTrigger:{trigger:bar,start:'top 90%'}});
+});
+
+/* ---------- misc ---------- */
+ScrollTrigger.create({start:0,end:'max',onUpdate:s=>{document.getElementById('sprog').style.width=(s.progress*100)+'%';}});
+gsap.utils.toArray('.reveal').forEach(el=>{
+  gsap.to(el,{opacity:1,y:0,duration:.8,ease:'power3.out',scrollTrigger:{trigger:el,start:'top 88%'}});
+});
+window.addEventListener('resize',()=>ScrollTrigger.refresh());
+</script>
+</body>
+</html>

@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About — PurpleBox Storage Dubai</title>
+<meta name="description" content="PurpleBox is a Dubai self-storage and moving company in Al Quoz 2 — 300 climate-controlled units, one team that packs, moves and stores everything.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<style>
+:root{--white:#FFFFFF;--paper:#F6F5F2;--ink:#17141D;--ink-soft:#6B6572;--purple:#6D28D9;--purple-deep:#5B21B6;--purple-dim:#EFE9FB;--kraft:#C9A876;--line:#E6E3DD;--mono:'IBM Plex Mono',monospace;--disp:'Space Grotesk',sans-serif;--sans:'Inter',sans-serif;}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:var(--sans);background:var(--white);color:var(--ink);overflow-x:hidden;}
+a{color:inherit;text-decoration:none;}
+::selection{background:var(--purple);color:#fff;}
+a:focus-visible,button:focus-visible{outline:2px solid var(--purple);outline-offset:3px;}
+@media (prefers-reduced-motion:reduce){*{animation-duration:.01ms !important;transition-duration:.01ms !important;}}
+
+header{position:fixed;top:0;left:0;right:0;z-index:600;background:rgba(255,255,255,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);}
+.header-inner{max-width:1200px;margin:0 auto;padding:15px 5vw;display:flex;align-items:center;justify-content:space-between;gap:20px;}
+.logo-wrap img{height:42px;}
+.head-right{display:flex;align-items:center;gap:22px;}
+.head-right a.link{font-size:13.5px;color:var(--ink-soft);}
+.head-right a.link:hover{color:var(--ink);}
+.dd{position:relative;}
+.dd-toggle{display:inline-flex;align-items:center;gap:4px;background:none;border:none;padding:0;font:inherit;cursor:pointer;color:var(--ink-soft);}
+.dd-toggle:hover{color:var(--ink);}
+.dd-toggle .chev{width:7px;height:7px;border-right:1.5px solid currentColor;border-bottom:1.5px solid currentColor;transform:rotate(45deg);margin-top:-4px;transition:transform .2s ease;}
+.dd:hover .dd-toggle .chev,.dd:focus-within .dd-toggle .chev{transform:rotate(225deg);margin-top:2px;}
+.dd-menu{position:absolute;top:100%;left:50%;margin-top:14px;background:#fff;border:1px solid var(--line);border-radius:12px;box-shadow:0 16px 36px rgba(23,20,29,.14);padding:6px;min-width:140px;opacity:0;visibility:hidden;transform:translate(-50%,4px);transition:opacity .18s ease,transform .18s ease,visibility .18s;}
+.dd:hover .dd-menu,.dd:focus-within .dd-menu{opacity:1;visibility:visible;transform:translate(-50%,0);}
+.dd-menu a{display:block;padding:9px 12px;border-radius:8px;font-size:13.5px;color:var(--ink-soft);white-space:nowrap;}
+.dd-menu a:hover{background:var(--purple-dim);color:var(--ink);}
+.tel{font-family:var(--mono);font-size:13px;color:var(--ink-soft);}
+.nav-cta{background:var(--purple);color:#fff;padding:9px 18px;border-radius:100px;font-weight:600;font-size:13px;}
+.nav-cta:hover{background:var(--purple-deep);}
+@media(max-width:820px){.head-right a.link,.tel{display:none;}}
+#sprog{position:fixed;top:0;left:0;height:3px;width:0%;background:var(--purple);z-index:700;}
+
+.wrap{max-width:1200px;margin:0 auto;padding:0 5vw;}
+.eyebrow{font-family:var(--mono);font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--purple);display:flex;align-items:center;gap:12px;margin-bottom:14px;}
+.eyebrow::before{content:'';width:24px;height:1px;background:var(--purple);}
+h1{font-family:var(--disp);font-weight:700;font-size:clamp(2.1rem,4.8vw,3.5rem);line-height:1.04;letter-spacing:-.02em;max-width:17ch;}
+h2{font-family:var(--disp);font-weight:700;font-size:clamp(1.7rem,3.2vw,2.4rem);line-height:1.08;max-width:20ch;}
+h3{font-family:var(--disp);font-weight:600;font-size:1.1rem;}
+.lede{color:var(--ink-soft);font-size:1.05rem;margin-top:16px;max-width:56ch;line-height:1.65;}
+section{padding:92px 0;}
+.reveal{opacity:0;transform:translateY(22px);}
+.btn{display:inline-flex;align-items:center;gap:9px;background:var(--purple);color:#fff;border:none;cursor:pointer;padding:14px 26px;border-radius:100px;font-family:var(--disp);font-weight:600;font-size:14px;}
+.btn:hover{background:var(--purple-deep);}
+.btn.ghost{background:transparent;color:var(--ink);border:1px solid var(--line);}
+
+/* hero */
+.hero{position:relative;height:82vh;min-height:500px;display:flex;align-items:flex-end;padding:0 5vw 68px;overflow:hidden;}
+.hero video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;}
+.hero::before{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(23,20,29,.32) 0%,rgba(23,20,29,.15) 40%,rgba(23,20,29,.82) 100%);}
+.hero-in{position:relative;z-index:2;max-width:1200px;margin:0 auto;width:100%;}
+.hero .eyebrow{color:#fff;}.hero .eyebrow::before{background:var(--kraft);}
+.hero h1{color:#fff;}
+.hero p{color:rgba(255,255,255,.85);font-size:1.05rem;margin-top:16px;max-width:48ch;line-height:1.6;}
+
+/* counters */
+.stats{background:var(--ink);color:#fff;padding:0;}
+.stats-in{max-width:1200px;margin:0 auto;padding:48px 5vw;display:grid;grid-template-columns:repeat(4,1fr);gap:34px;}
+.st .num{font-family:var(--disp);font-size:clamp(2rem,4vw,2.9rem);font-weight:700;color:#fff;line-height:1;}
+.st .num i{font-style:normal;color:var(--kraft);}
+.st .lab{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.55);margin-top:10px;}
+@media(max-width:820px){.stats-in{grid-template-columns:repeat(2,1fr);gap:28px;}}
+
+/* story timeline */
+.story{background:var(--white);}
+.tl{margin-top:44px;position:relative;padding-left:34px;}
+.tl::before{content:'';position:absolute;left:7px;top:6px;bottom:6px;width:2px;background:var(--line);}
+.tl-fill{position:absolute;left:7px;top:6px;width:2px;height:0%;background:var(--purple);}
+.tl-item{position:relative;padding-bottom:44px;}
+.tl-item::before{content:'';position:absolute;left:-34px;top:5px;width:16px;height:16px;border-radius:50%;background:#fff;border:2px solid var(--line);transition:.3s;}
+.tl-item.on::before{border-color:var(--purple);background:var(--purple);}
+.tl-item .t{font-family:var(--mono);font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--purple);}
+.tl-item h3{margin-top:6px;}
+.tl-item p{font-size:.94rem;color:var(--ink-soft);margin-top:7px;line-height:1.62;max-width:58ch;}
+
+/* difference */
+.diff{background:var(--paper);}
+.d-cols{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:40px;}
+.d-col{background:#fff;border:1px solid var(--line);border-radius:16px;padding:30px 28px;}
+.d-col.us{border-color:var(--purple);background:var(--purple-dim);}
+.d-col .h{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft);}
+.d-col.us .h{color:var(--purple);}
+.d-col h3{margin-top:8px;font-size:1.25rem;}
+.d-col ul{list-style:none;margin-top:18px;}
+.d-col li{font-size:.92rem;color:var(--ink-soft);padding:11px 0;border-bottom:1px dashed var(--line);display:flex;gap:11px;line-height:1.5;}
+.d-col li span{flex-shrink:0;font-family:var(--mono);}
+.d-col.us li span{color:var(--purple);}
+@media(max-width:800px){.d-cols{grid-template-columns:1fr;}}
+
+/* facility */
+.fac{background:var(--white);}
+.f-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:14px;overflow:hidden;margin-top:40px;}
+.f{background:#fff;padding:30px 26px;}
+.f .n{font-family:var(--mono);font-size:11px;color:var(--purple);letter-spacing:.1em;}
+.f h3{margin-top:10px;}
+.f p{font-size:.9rem;color:var(--ink-soft);margin-top:8px;line-height:1.55;}
+@media(max-width:800px){.f-grid{grid-template-columns:1fr;}}
+
+/* cta */
+.cta{background:var(--ink);color:#fff;}
+.cta-in{display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:36px;}
+.cta h2{color:#fff;max-width:15ch;}
+.cta .acts{display:flex;gap:12px;flex-wrap:wrap;}
+.cta .btn.ghost{color:#fff;border-color:rgba(255,255,255,.3);}
+
+/* ---------- SITE FOOTER ---------- */
+footer.site{background:var(--ink);color:rgba(255,255,255,.6);padding:64px 5vw 26px;border-top:none;display:block;}
+footer.site .fin{max-width:1280px;margin:0 auto;}
+footer.site .fgrid{display:grid;grid-template-columns:1.5fr 1fr 1fr 1.2fr;gap:44px;padding-bottom:44px;border-bottom:1px solid rgba(255,255,255,.12);}
+footer.site .brand img{height:26px;filter:brightness(0) invert(1);margin-bottom:16px;}
+footer.site .tagline{font-family:var(--disp);font-size:1.05rem;color:#fff;line-height:1.4;margin-bottom:14px;}
+footer.site p,footer.site a{font-size:.9rem;line-height:1.75;color:rgba(255,255,255,.62);display:block;}
+footer.site a:hover{color:var(--kraft);}
+footer.site h5{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--kraft);margin-bottom:14px;}
+footer.site .chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px;}
+footer.site .chips span{font-family:var(--mono);font-size:10px;letter-spacing:.05em;text-transform:uppercase;color:rgba(255,255,255,.6);border:1px solid rgba(255,255,255,.18);padding:5px 11px;border-radius:100px;}
+footer.site .fcta{display:inline-flex;align-items:center;gap:8px;background:var(--purple);color:#fff;padding:11px 20px;border-radius:100px;font-family:var(--disp);font-weight:600;font-size:13px;margin-top:16px;}
+footer.site .fcta:hover{background:#8B5CF6;color:#fff;}
+footer.site .fbot{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;padding-top:22px;font-size:12px;color:rgba(255,255,255,.45);}
+footer.site .fbot a{display:inline;font-size:12px;color:rgba(255,255,255,.45);}
+@media(max-width:900px){footer.site .fgrid{grid-template-columns:1fr 1fr;gap:32px;}}
+@media(max-width:560px){footer.site .fgrid{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
+
+<div id="sprog"></div>
+<header>
+  <div class="header-inner">
+    <div class="logo-wrap"><a href="index.html"><img src="https://purplebox.ae/wp-content/uploads/2026/05/logo-1.png" alt="PurpleBox"></a></div>
+    <div class="head-right">
+      <a class="link" href="index.html">Home</a>
+      <a class="link" href="reserve-unit.html">Reserve Unit</a>
+      <a class="link" href="packing-moving.html">Packing &amp; Moving</a>
+      <a class="link" href="size-guide.html">Size Guide</a>
+      <a class="link" href="supplies.html">Supplies</a>
+      <div class="dd">
+        <button class="dd-toggle" type="button" style="color:var(--purple);font-weight:600;">About us<span class="chev"></span></button>
+        <div class="dd-menu">
+          <a href="about.html" style="color:var(--purple);font-weight:600;">About</a>
+          <a href="contact.html">Contact</a>
+        </div>
+      </div>
+
+      <a class="tel" href="tel:+971542249946">+971 54 224 9946</a>
+      <a class="nav-cta" href="contact.html">Contact</a>
+    </div>
+  </div>
+</header>
+
+<section class="hero">
+  <video autoplay muted loop playsinline><source src="https://purplebox.ae/wp-content/uploads/2026/06/video.mp4" type="video/mp4"></video>
+  <div class="hero-in">
+    <div class="eyebrow">About PurpleBox</div>
+    <h1>One team that packs it, moves it, and stores it.</h1>
+    <p>Most people dealing with a Dubai move end up managing two companies who blame each other. We built PurpleBox so there's only one.</p>
+  </div>
+</section>
+
+<section class="stats">
+  <div class="stats-in">
+    <div class="st"><div class="num" data-to="300">0</div><div class="lab">Climate-controlled units</div></div>
+    <div class="st"><div class="num" data-to="9">0</div><div class="lab">Unit sizes, 10–200 sq ft</div></div>
+    <div class="st"><div class="num" data-to="24">0</div><div class="lab">Hour access &amp; CCTV</div></div>
+    <div class="st"><div class="num" data-to="5" data-suffix="/5">0</div><div class="lab">Google review rating</div></div>
+  </div>
+</section>
+
+<section class="story">
+  <div class="wrap">
+    <div class="eyebrow reveal">Our story</div>
+    <h2 class="reveal">How we got here.</h2>
+    <div class="tl" id="tl">
+      <div class="tl-fill" id="tl-fill"></div>
+      <div class="tl-item"><div class="t">The problem</div><h3>Dubai handover dates never line up</h3><p>You're out on the 30th and into the new place on the 15th. So you hire a mover, then a storage company, then coordinate between two teams who each say the other is responsible when a table leg goes missing.</p></div>
+      <div class="tl-item"><div class="t">The idea</div><h3>Do the whole job with one crew</h3><p>The people who wrap your sofa should be the people who drive it, the people who store it, and the people who bring it back. One price, one phone number, one team accountable from start to finish.</p></div>
+      <div class="tl-item"><div class="t">Launch</div><h3>Al Quoz Industrial Area 2</h3><p>We opened with around 300 climate-controlled units across nine sizes, from a 10 sq ft locker to a 200 sq ft villa unit — with Dubai Municipality, Civil Defence and DEWA approvals, and SIRA-connected CCTV throughout.</p></div>
+      <div class="tl-item"><div class="t">Growth</div><h3>Roughly 90% occupancy in three months</h3><p>Word travelled faster than we expected. Almost all of it came from people who'd used us for a move and stayed for the storage, or told a friend who was in the same handover squeeze.</p></div>
+      <div class="tl-item"><div class="t">Now</div><h3>Packing, moving, storage and supplies</h3><p>Full packing and moving crews, boxes and materials delivered to your door, and units you can access any hour of the day. All from one facility and one team in Al Quoz.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="diff">
+  <div class="wrap">
+    <div class="eyebrow reveal">The difference</div>
+    <h2 class="reveal">Why people choose us over the alternative.</h2>
+    <div class="d-cols">
+      <div class="d-col reveal">
+        <div class="h">The usual way</div>
+        <h3>A mover plus a storage company</h3>
+        <ul>
+          <li><span>—</span>Two contracts, two prices, two invoices to chase</li>
+          <li><span>—</span>Your things handled twice by two sets of strangers</li>
+          <li><span>—</span>Nobody accountable when something is damaged</li>
+          <li><span>—</span>You coordinate the dates between them</li>
+          <li><span>—</span>Automated portals and ticket numbers</li>
+        </ul>
+      </div>
+      <div class="d-col us reveal">
+        <div class="h">With PurpleBox</div>
+        <h3>One team, start to finish</h3>
+        <ul>
+          <li><span>✦</span>One fixed price agreed before we lift a box</li>
+          <li><span>✦</span>The crew that packs you is the crew that stores you</li>
+          <li><span>✦</span>One team accountable for everything</li>
+          <li><span>✦</span>We handle the timing between move-out and move-in</li>
+          <li><span>✦</span>A real person on WhatsApp, replying in minutes</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="fac">
+  <div class="wrap">
+    <div class="eyebrow reveal">The facility</div>
+    <h2 class="reveal">Al Quoz Industrial Area 2.</h2>
+    <p class="lede reveal">Purpose-fitted for storage rather than a warehouse with partitions thrown up inside it. Everything below applies to every unit, in every size.</p>
+    <div class="f-grid">
+      <div class="f reveal"><div class="n">01</div><h3>Climate controlled throughout</h3><p>AC and humidity control across the whole facility. Dubai summers warp wooden furniture, cloud electronics and yellow documents — indoor storage without climate control doesn't solve that.</p></div>
+      <div class="f reveal"><div class="n">02</div><h3>SIRA-connected CCTV</h3><p>Cameras across the facility monitored around the clock, meeting Dubai's SIRA security standards. Units are individually locked and you hold the only key.</p></div>
+      <div class="f reveal"><div class="n">03</div><h3>Fully approved</h3><p>Dubai Municipality, Civil Defence and DEWA approvals in place. Fire detection and suppression throughout the building.</p></div>
+      <div class="f reveal"><div class="n">04</div><h3>24/7 access with lifts</h3><p>Come and go any hour, any day. Elevator access across the facility so nothing gets carried up stairs, and trolleys available on site.</p></div>
+      <div class="f reveal"><div class="n">05</div><h3>Nine sizes, 10 to 200 sq ft</h3><p>From a locker for documents to a unit holding an entire villa. Move between sizes as your needs change without changing facility.</p></div>
+      <div class="f reveal"><div class="n">06</div><h3>Loading bay and supplies</h3><p>Covered loading directly at the building, with boxes, tape, wrap and locks available on site so a forgotten roll of tape doesn't cost you a trip.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="cta">
+  <div class="wrap cta-in">
+    <h2>Come and see the place.</h2>
+    <div class="acts">
+      <a class="btn" href="contact.html">Book a visit</a>
+      <a class="btn ghost" href="https://wa.me/971542249946" target="_blank" rel="noopener">WhatsApp us</a>
+    </div>
+  </div>
+</section>
+
+<footer class="site">
+  <div class="fin">
+    <div class="fgrid">
+      <div>
+        <div class="brand"><img src="https://purplebox.ae/wp-content/uploads/2026/05/logo-1.png" alt="PurpleBox"></div>
+        <div class="tagline">We Pack, Move &amp; Store Everything</div>
+        <p>Climate-controlled self-storage, packing and moving in Dubai — one team from your door to your unit and back.</p>
+        <div class="chips"><span>Climate controlled</span><span>24/7 CCTV</span><span>SIRA compliant</span><span>DM &amp; Civil Defence approved</span></div>
+      </div>
+
+      <div>
+        <h5>Services</h5>
+        <a href="reserve-unit.html">Reserve a unit</a>
+        <a href="size-guide.html">Size guide</a>
+        <a href="packing-moving.html">Packing &amp; moving</a>
+        <a href="supplies.html">Packing supplies</a>
+        <a href="packing-moving.html#quote">Move + store</a>
+      </div>
+
+      <div>
+        <h5>Company</h5>
+        <a href="index.html">Home</a>
+        <a href="about.html">About us</a>
+        <a href="contact.html">Contact</a>
+        <a href="reserve-unit.html#faq">FAQ</a>
+        <a href="https://wa.me/971542249946" target="_blank" rel="noopener">WhatsApp us</a>
+      </div>
+
+      <div>
+        <h5>Visit &amp; contact</h5>
+        <p>ABA Avenue — Unit 12, 12th Street<br>Al Quoz Industrial Area 2<br>Dubai, United Arab Emirates</p>
+        <a href="tel:+971542249946">+971 54 224 9946</a>
+        <a href="mailto:contact@purplebox.ae">contact@purplebox.ae</a>
+        <p style="margin-top:8px;">Unit access: 24 hours, 7 days</p>
+        <a class="fcta" href="https://wa.me/971542249946" target="_blank" rel="noopener">Chat on WhatsApp</a>
+      </div>
+    </div>
+
+    <div class="fbot">
+      <span>© 2026 Short Term Storage LLC — Dubai, UAE. All rights reserved.</span>
+      <span><a href="#">Privacy Policy</a> · <a href="#">Terms &amp; Conditions</a></span>
+    </div>
+  </div>
+</footer>
+
+<script>
+gsap.registerPlugin(ScrollTrigger);
+/* counters */
+gsap.utils.toArray('.st .num').forEach(el=>{
+  const to=parseFloat(el.dataset.to), suf=el.dataset.suffix||'';
+  ScrollTrigger.create({trigger:el,start:'top 92%',once:true,onEnter:()=>{
+    gsap.to({v:0},{v:to,duration:1.6,ease:'power2.out',onUpdate:function(){
+      el.innerHTML=Math.round(this.targets()[0].v)+(suf?`<i>${suf}</i>`:'');
+    }});
+  }});
+});
+
+/* story timeline */
+const items=gsap.utils.toArray('.tl-item');
+ScrollTrigger.create({trigger:'#tl',start:'top 65%',end:'bottom 78%',scrub:.5,onUpdate:s=>{
+  document.getElementById('tl-fill').style.height=(s.progress*100)+'%';
+  const upto=Math.floor(s.progress*items.length+0.35);
+  items.forEach((it,i)=>it.classList.toggle('on',i<upto));
+}});
+items.forEach(it=>gsap.from(it,{opacity:0,x:-18,duration:.7,ease:'power3.out',scrollTrigger:{trigger:it,start:'top 86%'}}));
+
+/* list stagger */
+gsap.utils.toArray('.d-col').forEach(col=>{
+  gsap.from(col.querySelectorAll('li'),{opacity:0,x:-12,duration:.5,stagger:.07,ease:'power2.out',
+    scrollTrigger:{trigger:col,start:'top 80%'}});
+});
+
+ScrollTrigger.create({start:0,end:'max',onUpdate:s=>{document.getElementById('sprog').style.width=(s.progress*100)+'%';}});
+gsap.utils.toArray('.reveal').forEach(el=>gsap.to(el,{opacity:1,y:0,duration:.8,ease:'power3.out',scrollTrigger:{trigger:el,start:'top 88%'}}));
+</script>
+</body>
+</html>

@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Packing Supplies — PurpleBox Dubai</title>
+<meta name="description" content="Boxes, tape, bubble wrap and locks delivered in Dubai. Ready-made packing kits sized by home, or build your own order. Free delivery with any storage unit.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<style>
+:root{
+  --white:#FFFFFF; --paper:#F6F5F2; --ink:#17141D; --ink-soft:#6B6572;
+  --purple:#6D28D9; --purple-deep:#5B21B6; --purple-dim:#EFE9FB;
+  --kraft:#C9A876; --kraft-lt:#E3D2AF; --line:#E6E3DD;
+  --mono:'IBM Plex Mono',monospace; --disp:'Space Grotesk',sans-serif; --sans:'Inter',sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:var(--sans);background:var(--white);color:var(--ink);overflow-x:hidden;padding-bottom:78px;}
+a{color:inherit;text-decoration:none;}
+::selection{background:var(--purple);color:#fff;}
+a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(--purple);outline-offset:3px;}
+@media (prefers-reduced-motion: reduce){*{animation-duration:.01ms !important;transition-duration:.01ms !important;}}
+
+header{position:fixed;top:0;left:0;right:0;z-index:600;background:rgba(255,255,255,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);}
+.header-inner{max-width:1200px;margin:0 auto;padding:15px 5vw;display:flex;align-items:center;justify-content:space-between;gap:20px;}
+.logo-wrap img{height:42px;}
+.head-right{display:flex;align-items:center;gap:22px;}
+.head-right a.link{font-size:13.5px;color:var(--ink-soft);}
+.head-right a.link:hover{color:var(--ink);}
+.dd{position:relative;}
+.dd-toggle{display:inline-flex;align-items:center;gap:4px;background:none;border:none;padding:0;font:inherit;cursor:pointer;color:var(--ink-soft);}
+.dd-toggle:hover{color:var(--ink);}
+.dd-toggle .chev{width:7px;height:7px;border-right:1.5px solid currentColor;border-bottom:1.5px solid currentColor;transform:rotate(45deg);margin-top:-4px;transition:transform .2s ease;}
+.dd:hover .dd-toggle .chev,.dd:focus-within .dd-toggle .chev{transform:rotate(225deg);margin-top:2px;}
+.dd-menu{position:absolute;top:100%;left:50%;margin-top:14px;background:#fff;border:1px solid var(--line);border-radius:12px;box-shadow:0 16px 36px rgba(23,20,29,.14);padding:6px;min-width:140px;opacity:0;visibility:hidden;transform:translate(-50%,4px);transition:opacity .18s ease,transform .18s ease,visibility .18s;}
+.dd:hover .dd-menu,.dd:focus-within .dd-menu{opacity:1;visibility:visible;transform:translate(-50%,0);}
+.dd-menu a{display:block;padding:9px 12px;border-radius:8px;font-size:13.5px;color:var(--ink-soft);white-space:nowrap;}
+.dd-menu a:hover{background:var(--purple-dim);color:var(--ink);}
+.tel{font-family:var(--mono);font-size:13px;color:var(--ink-soft);}
+.nav-cta{background:var(--purple);color:#fff;padding:9px 18px;border-radius:100px;font-weight:600;font-size:13px;}
+.nav-cta:hover{background:var(--purple-deep);}
+@media(max-width:720px){.head-right a.link,.tel{display:none;}}
+
+.wrap{max-width:1200px;margin:0 auto;padding:0 5vw;}
+.eyebrow{font-family:var(--mono);font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--purple);display:flex;align-items:center;gap:12px;margin-bottom:14px;}
+.eyebrow::before{content:'';width:24px;height:1px;background:var(--purple);}
+h1{font-family:var(--disp);font-weight:700;font-size:clamp(2.1rem,4.6vw,3.3rem);line-height:1.05;letter-spacing:-.02em;max-width:18ch;}
+h2{font-family:var(--disp);font-weight:700;font-size:clamp(1.7rem,3.2vw,2.4rem);line-height:1.08;max-width:20ch;}
+h3{font-family:var(--disp);font-weight:600;font-size:1.1rem;}
+.lede{color:var(--ink-soft);font-size:1.05rem;margin-top:16px;max-width:54ch;line-height:1.62;}
+section{padding:88px 0;}
+.reveal{opacity:0;transform:translateY(22px);}
+.btn{display:inline-flex;align-items:center;gap:9px;background:var(--purple);color:#fff;border:none;cursor:pointer;padding:14px 26px;border-radius:100px;font-family:var(--disp);font-weight:600;font-size:14px;}
+.btn:hover{background:var(--purple-deep);}
+.btn.ghost{background:transparent;color:var(--ink);border:1px solid var(--line);}
+.btn.ghost:hover{border-color:var(--ink);}
+
+/* intro */
+.intro{padding:150px 0 66px;background:var(--paper);border-bottom:1px solid var(--line);}
+.intro-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:52px;align-items:center;}
+.assure{display:flex;flex-wrap:wrap;gap:10px;margin-top:24px;}
+.assure span{font-family:var(--mono);font-size:11px;letter-spacing:.04em;text-transform:uppercase;color:var(--ink-soft);background:#fff;border:1px solid var(--line);padding:7px 13px;border-radius:100px;}
+/* stacked box illustration */
+.stack{aspect-ratio:4/3.2;background:#fff;border:1px solid var(--line);border-radius:14px;display:flex;align-items:flex-end;justify-content:center;gap:10px;padding:0 12% 12%;}
+.sbox{background:linear-gradient(160deg,var(--kraft-lt),var(--kraft));border:1px solid rgba(0,0,0,.18);border-radius:3px;position:relative;}
+.sbox::before{content:'';position:absolute;left:10%;right:10%;top:44%;height:2px;background:rgba(0,0,0,.18);}
+@media(max-width:860px){.intro-grid{grid-template-columns:1fr;}}
+
+/* kits */
+.kits{background:var(--white);}
+.kit-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:40px;}
+.kit{background:#fff;border:1px solid var(--line);border-radius:16px;padding:28px 26px;display:flex;flex-direction:column;transition:border-color .25s;}
+.kit:hover{border-color:var(--purple);}
+.kit.best{border-color:var(--purple);background:var(--purple-dim);}
+.kit .tag{font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--purple);}
+.kit h3{margin-top:8px;font-size:1.25rem;}
+.kit .for{font-size:.88rem;color:var(--ink-soft);margin-top:6px;}
+.kit ul{list-style:none;margin-top:16px;flex:1;}
+.kit li{font-size:.88rem;color:var(--ink-soft);padding:6px 0;border-bottom:1px dashed var(--line);}
+.kit .pz{font-family:var(--mono);font-size:1.15rem;margin-top:16px;}
+.kit .btn{margin-top:14px;justify-content:center;font-size:13px;padding:12px 20px;}
+@media(max-width:900px){.kit-grid{grid-template-columns:1fr;}}
+
+/* shop */
+.shop{background:var(--paper);}
+.filters{display:flex;gap:9px;flex-wrap:wrap;margin-top:30px;}
+.filt{background:#fff;border:1px solid var(--line);border-radius:100px;padding:9px 18px;font-family:var(--mono);font-size:11.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-soft);cursor:pointer;transition:all .25s;}
+.filt:hover{border-color:var(--purple);}
+.filt.on{background:var(--purple);color:#fff;border-color:var(--purple);}
+.prod-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:28px;}
+.prod{background:#fff;border:1px solid var(--line);border-radius:14px;padding:22px;display:flex;flex-direction:column;}
+.prod .vis{height:90px;display:flex;align-items:flex-end;justify-content:center;gap:5px;margin-bottom:16px;}
+.prod .cat{font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--purple);}
+.prod h4{font-family:var(--disp);font-weight:600;font-size:1rem;margin-top:6px;}
+.prod .d{font-size:.83rem;color:var(--ink-soft);margin-top:5px;line-height:1.45;flex:1;}
+.prod .pz{font-family:var(--mono);font-size:1rem;margin-top:14px;}
+.qty{display:flex;align-items:center;gap:0;margin-top:12px;border:1px solid var(--line);border-radius:100px;overflow:hidden;}
+.qty button{flex:0 0 38px;height:36px;background:#fff;border:none;cursor:pointer;font-family:var(--mono);font-size:15px;color:var(--purple);}
+.qty button:hover{background:var(--purple-dim);}
+.qty .n{flex:1;text-align:center;font-family:var(--mono);font-size:14px;}
+@media(max-width:1000px){.prod-grid{grid-template-columns:repeat(2,1fr);}}
+@media(max-width:560px){.prod-grid{grid-template-columns:1fr;}}
+/* item shapes */
+.v-box{background:linear-gradient(160deg,var(--kraft-lt),var(--kraft));border:1px solid rgba(0,0,0,.18);border-radius:3px;position:relative;}
+.v-box::before{content:'';position:absolute;left:10%;right:10%;top:44%;height:2px;background:rgba(0,0,0,.18);}
+.v-roll{background:#DDD8E4;border:1px solid rgba(0,0,0,.14);border-radius:50%;position:relative;}
+.v-roll::after{content:'';position:absolute;inset:32%;background:#fff;border-radius:50%;border:1px solid rgba(0,0,0,.12);}
+.v-wrap{background:repeating-linear-gradient(45deg,#E8E5F0 0 6px,#DDD8E4 6px 12px);border:1px solid rgba(0,0,0,.12);border-radius:4px;}
+.v-lock{background:#8B84A8;border-radius:5px;position:relative;}
+.v-lock::before{content:'';position:absolute;top:-40%;left:22%;right:22%;height:52%;border:5px solid #8B84A8;border-bottom:none;border-radius:14px 14px 0 0;}
+.v-cover{background:linear-gradient(160deg,#B9B3C9,#9C95B8);border-radius:5px 5px 2px 2px;}
+.v-marker{background:#55505E;border-radius:2px;}
+
+/* guide */
+.guide{background:var(--white);}
+.g-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-top:38px;}
+.g{background:#fff;border:1px solid var(--line);border-radius:12px;padding:24px 26px;display:flex;gap:16px;align-items:flex-start;}
+.g .k{color:var(--purple);font-family:var(--mono);flex-shrink:0;}
+.g .gt{font-family:var(--disp);font-weight:600;font-size:1rem;}
+.g .gd{font-size:.88rem;color:var(--ink-soft);margin-top:5px;line-height:1.55;}
+@media(max-width:760px){.g-grid{grid-template-columns:1fr;}}
+
+/* delivery */
+.deliv{background:var(--ink);color:#fff;}
+.d-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:34px;}
+.d .n{font-family:var(--mono);font-size:11px;color:var(--kraft);letter-spacing:.12em;}
+.d h3{margin-top:8px;}
+.d p{font-size:.9rem;color:rgba(255,255,255,.65);margin-top:8px;line-height:1.55;}
+@media(max-width:800px){.d-grid{grid-template-columns:1fr;}}
+
+/* faq */
+.faq{background:var(--paper);}
+.acc{max-width:800px;margin-top:32px;}
+.acc-item{border-bottom:1px solid var(--line);}
+.acc-q{width:100%;background:none;border:none;text-align:left;padding:22px 0;cursor:pointer;display:flex;justify-content:space-between;align-items:center;font-family:var(--disp);font-size:1.02rem;font-weight:600;color:var(--ink);}
+.acc-q .pl{font-family:var(--mono);font-size:1.15rem;color:var(--purple);transition:transform .3s;flex-shrink:0;margin-left:18px;}
+.acc-item.open .pl{transform:rotate(45deg);}
+.acc-a{max-height:0;overflow:hidden;transition:max-height .38s ease;}
+.acc-a p{padding-bottom:20px;color:var(--ink-soft);line-height:1.62;max-width:62ch;}
+
+/* sticky cart */
+.cart-bar{position:fixed;bottom:0;left:0;right:0;z-index:650;background:rgba(255,255,255,.97);backdrop-filter:blur(10px);border-top:1px solid var(--line);padding:12px 5vw;display:flex;align-items:center;justify-content:space-between;gap:16px;}
+.cart-bar .ct{font-size:13px;color:var(--ink-soft);}
+.cart-bar .ct b{color:var(--ink);font-family:var(--disp);}
+.cart-bar .ca{display:flex;gap:10px;flex-shrink:0;align-items:center;}
+.cart-bar .btn{padding:11px 20px;font-size:13px;}
+.cart-bar .clear{font-size:12px;color:var(--ink-soft);cursor:pointer;background:none;border:none;font-family:var(--sans);}
+.cart-bar .clear:hover{color:var(--ink);}
+@media(max-width:640px){.cart-bar .clear{display:none;}}
+
+
+/* ---------- SITE FOOTER ---------- */
+footer.site{background:var(--ink);color:rgba(255,255,255,.6);padding:64px 5vw 26px;border-top:none;display:block;}
+footer.site .fin{max-width:1280px;margin:0 auto;}
+footer.site .fgrid{display:grid;grid-template-columns:1.5fr 1fr 1fr 1.2fr;gap:44px;padding-bottom:44px;border-bottom:1px solid rgba(255,255,255,.12);}
+footer.site .brand img{height:26px;filter:brightness(0) invert(1);margin-bottom:16px;}
+footer.site .tagline{font-family:var(--disp);font-size:1.05rem;color:#fff;line-height:1.4;margin-bottom:14px;}
+footer.site p,footer.site a{font-size:.9rem;line-height:1.75;color:rgba(255,255,255,.62);display:block;}
+footer.site a:hover{color:var(--kraft);}
+footer.site h5{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--kraft);margin-bottom:14px;}
+footer.site .chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px;}
+footer.site .chips span{font-family:var(--mono);font-size:10px;letter-spacing:.05em;text-transform:uppercase;color:rgba(255,255,255,.6);border:1px solid rgba(255,255,255,.18);padding:5px 11px;border-radius:100px;}
+footer.site .fcta{display:inline-flex;align-items:center;gap:8px;background:var(--purple);color:#fff;padding:11px 20px;border-radius:100px;font-family:var(--disp);font-weight:600;font-size:13px;margin-top:16px;}
+footer.site .fcta:hover{background:#8B5CF6;color:#fff;}
+footer.site .fbot{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;padding-top:22px;font-size:12px;color:rgba(255,255,255,.45);}
+footer.site .fbot a{display:inline;font-size:12px;color:rgba(255,255,255,.45);}
+@media(max-width:900px){footer.site .fgrid{grid-template-columns:1fr 1fr;gap:32px;}}
+@media(max-width:560px){footer.site .fgrid{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <div class="logo-wrap"><a href="index.html"><img src="https://purplebox.ae/wp-content/uploads/2026/05/logo-1.png" alt="PurpleBox"></a></div>
+    <div class="head-right">
+      <a class="link" href="index.html">Home</a>
+      <a class="link" href="reserve-unit.html">Reserve Unit</a>
+      <a class="link" href="packing-moving.html">Packing &amp; Moving</a>
+      <a class="link" href="size-guide.html">Size Guide</a>
+      <a class="link" href="supplies.html" style="color:var(--purple);font-weight:600;">Supplies</a>
+      <div class="dd">
+        <button class="dd-toggle" type="button">About us<span class="chev"></span></button>
+        <div class="dd-menu">
+          <a href="about.html">About</a>
+          <a href="contact.html">Contact</a>
+        </div>
+      </div>
+
+      <a class="tel" href="tel:+971542249946">+971 54 224 9946</a>
+      <a class="nav-cta" href="#shop">Order now</a>
+    </div>
+  </div>
+</header>
+
+<section class="intro">
+  <div class="wrap intro-grid">
+    <div>
+      <div class="eyebrow">Packing supplies</div>
+      <h1>The right box beats a free one from the supermarket.</h1>
+      <p class="lede">Supermarket cartons are single-walled, already stressed, and collapse when stacked three high in a warm unit. Ours are double-walled and sized to stack flat and square — which is how you fit a whole home into the unit you're actually paying for.</p>
+      <div class="assure">
+        <span>Next-day Dubai delivery</span><span>Free with any unit</span><span>Unused boxes taken back</span>
+      </div>
+      <a class="btn" href="#kits" style="margin-top:24px;">See packing kits →</a>
+    </div>
+    <div class="stack" id="stack"></div>
+  </div>
+</section>
+
+<section class="kits" id="kits">
+  <div class="wrap">
+    <div class="eyebrow reveal">Ready-made kits</div>
+    <h2 class="reveal">Sized by home, so you don't have to count.</h2>
+    <p class="lede reveal">Working out how many boxes a two-bedroom apartment takes is guesswork most people get wrong in both directions. These kits are built from what our crews actually use on real Dubai moves.</p>
+    <div class="kit-grid" id="kit-grid"></div>
+  </div>
+</section>
+
+<section class="shop" id="shop">
+  <div class="wrap">
+    <div class="eyebrow reveal">All supplies</div>
+    <h2 class="reveal">Build your own order.</h2>
+    <p class="lede reveal">Add what you need and send the list on WhatsApp — we confirm stock, total and delivery slot within 15 minutes.</p>
+    <div class="filters" id="filters"></div>
+    <div class="prod-grid" id="prod-grid"></div>
+  </div>
+</section>
+
+<section class="guide" id="guide">
+  <div class="wrap">
+    <div class="eyebrow reveal">Packing guide</div>
+    <h2 class="reveal">How the crews do it.</h2>
+    <div class="g-grid">
+      <div class="g reveal"><span class="k">01</span><div><div class="gt">Heavy things go in small boxes</div><div class="gd">Books and tools in small cartons, linens and cushions in large ones. A large box full of books is unliftable and splits at the seams — the most common mistake we see.</div></div></div>
+      <div class="g reveal"><span class="k">02</span><div><div class="gt">Fill every gap</div><div class="gd">Half-empty boxes crush when stacked. Pack to the top and fill voids with paper or soft items so the box holds its shape under weight.</div></div></div>
+      <div class="g reveal"><span class="k">03</span><div><div class="gt">Plates stand on edge</div><div class="gd">Wrapped individually and stacked vertically like records, not flat like a pile. They survive far better under pressure that way.</div></div></div>
+      <div class="g reveal"><span class="k">04</span><div><div class="gt">Tape the bottom in an H</div><div class="gd">One strip along the seam and one across each end. A single strip down the middle is what gives way when you lift a full box.</div></div></div>
+      <div class="g reveal"><span class="k">05</span><div><div class="gt">Label two sides, not the top</div><div class="gd">Stacked boxes hide their lids. Write the room and contents on two sides so you can read the whole stack without taking it apart.</div></div></div>
+      <div class="g reveal"><span class="k">06</span><div><div class="gt">Mattresses and sofas need covers</div><div class="gd">Fabric collects dust and moisture over months in storage. A proper cover costs a fraction of a professional clean later.</div></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="deliv">
+  <div class="wrap">
+    <div class="eyebrow" style="color:var(--kraft);">Delivery</div>
+    <h2 style="color:#fff;">Getting it to you.</h2>
+    <div class="d-grid" style="margin-top:36px;">
+      <div class="d"><div class="n">01</div><h3>Free with a unit</h3><p>Reserve any storage unit and your supplies come to your door at no delivery charge, timed for the day before you pack.</p></div>
+      <div class="d"><div class="n">02</div><h3>Next-day across Dubai</h3><p>Order before 4pm and we deliver next day in most areas. Same-day is often possible — ask on WhatsApp.</p></div>
+      <div class="d"><div class="n">03</div><h3>Bring back what you don't use</h3><p>Over-ordered? Return unused, unopened boxes when you move in and we'll credit them. Better to have too many than run out mid-pack.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="faq">
+  <div class="wrap">
+    <div class="eyebrow reveal">Questions</div>
+    <h2 class="reveal">About supplies and delivery.</h2>
+    <div class="acc">
+      <div class="acc-item reveal"><button class="acc-q">How many boxes will I actually need?<span class="pl">+</span></button><div class="acc-a"><p>Roughly 15–20 for a studio, 25–35 for a one-bed, 40–55 for a two-bed and 60+ for a three-bed. The kits above are built to those numbers. Order slightly over — unused boxes come back for credit.</p></div></div>
+      <div class="acc-item reveal"><button class="acc-q">Can I collect instead of paying delivery?<span class="pl">+</span></button><div class="acc-a"><p>Yes. Pick up from our Al Quoz 2 facility any time — access is 24/7. Message ahead so we have your order boxed and waiting.</p></div></div>
+      <div class="acc-item reveal"><button class="acc-q">Do you sell wardrobe boxes?<span class="pl">+</span></button><div class="acc-a"><p>Yes, with a hanging rail inside so clothes travel on their hangers and go straight into the new wardrobe. They save a lot of ironing.</p></div></div>
+      <div class="acc-item reveal"><button class="acc-q">What lock do I need for my unit?<span class="pl">+</span></button><div class="acc-a"><p>A disc lock. It's far harder to cut than a standard padlock and it's what we stock. You keep the only key — we don't hold a copy.</p></div></div>
+      <div class="acc-item reveal"><button class="acc-q">Are the boxes reusable?<span class="pl">+</span></button><div class="acc-a"><p>Double-walled cartons handle several moves if you break them down flat rather than crushing them. Keep the tape line clean and they'll go again.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<div class="cart-bar">
+  <div class="ct"><b id="cart-count">0 items</b> <span id="cart-note">— add supplies to get started</span></div>
+  <div class="ca">
+    <button class="clear" id="cart-clear">Clear</button>
+    <a class="btn ghost" href="tel:+971542249946">Call</a>
+    <button class="btn" id="cart-go">Send order</button>
+  </div>
+</div>
+
+<footer class="site">
+  <div class="fin">
+    <div class="fgrid">
+      <div>
+        <div class="brand"><img src="https://purplebox.ae/wp-content/uploads/2026/05/logo-1.png" alt="PurpleBox"></div>
+        <div class="tagline">We Pack, Move &amp; Store Everything</div>
+        <p>Climate-controlled self-storage, packing and moving in Dubai — one team from your door to your unit and back.</p>
+        <div class="chips"><span>Climate controlled</span><span>24/7 CCTV</span><span>SIRA compliant</span><span>DM &amp; Civil Defence approved</span></div>
+      </div>
+
+      <div>
+        <h5>Services</h5>
+        <a href="reserve-unit.html">Reserve a unit</a>
+        <a href="size-guide.html">Size guide</a>
+        <a href="packing-moving.html">Packing &amp; moving</a>
+        <a href="supplies.html">Packing supplies</a>
+        <a href="packing-moving.html#quote">Move + store</a>
+      </div>
+
+      <div>
+        <h5>Company</h5>
+        <a href="index.html">Home</a>
+        <a href="about.html">About us</a>
+        <a href="contact.html">Contact</a>
+        <a href="reserve-unit.html#faq">FAQ</a>
+        <a href="https://wa.me/971542249946" target="_blank" rel="noopener">WhatsApp us</a>
+      </div>
+
+      <div>
+        <h5>Visit &amp; contact</h5>
+        <p>ABA Avenue — Unit 12, 12th Street<br>Al Quoz Industrial Area 2<br>Dubai, United Arab Emirates</p>
+        <a href="tel:+971542249946">+971 54 224 9946</a>
+        <a href="mailto:contact@purplebox.ae">contact@purplebox.ae</a>
+        <p style="margin-top:8px;">Unit access: 24 hours, 7 days</p>
+        <a class="fcta" href="https://wa.me/971542249946" target="_blank" rel="noopener">Chat on WhatsApp</a>
+      </div>
+    </div>
+
+    <div class="fbot">
+      <span>© 2026 Short Term Storage LLC — Dubai, UAE. All rights reserved.</span>
+      <span><a href="#">Privacy Policy</a> · <a href="#">Terms &amp; Conditions</a></span>
+    </div>
+  </div>
+</footer>
+
+<script>
+gsap.registerPlugin(ScrollTrigger);const WA='https://wa.me/971542249946?text=';
+
+/* intro stack */
+const stack=document.getElementById('stack');
+[42,58,34,66,48].forEach(h=>{
+  const b=document.createElement('div');b.className='sbox';
+  b.style.width='16%';b.style.height=h+'%';stack.appendChild(b);
+});
+
+/* ---- kits ---- */
+const KITS=[
+ {tag:'Studio / small',name:'Starter Kit',for:'A studio or single room',
+  items:['15 small &amp; medium boxes','1 roll packing tape','5 m bubble wrap','1 marker pen','1 disc lock'],price:'AED 180'},
+ {tag:'Most popular',name:'Apartment Kit',for:'A 1–2 bedroom apartment',best:true,
+  items:['35 boxes across three sizes','2 wardrobe boxes','3 rolls packing tape','15 m bubble wrap','Mattress cover + marker','1 disc lock'],price:'AED 420'},
+ {tag:'Villa / office',name:'Home Kit',for:'A 3+ bedroom home or office',
+  items:['60 boxes across three sizes','4 wardrobe boxes','5 rolls packing tape','30 m bubble wrap','2 mattress + 1 sofa cover','2 disc locks'],price:'AED 780'},
+];
+const kg=document.getElementById('kit-grid');
+KITS.forEach(k=>{
+  const d=document.createElement('div');
+  d.className='kit reveal'+(k.best?' best':'');
+  d.innerHTML=`<div class="tag">${k.tag}</div><h3>${k.name}</h3><div class="for">${k.for}</div>
+    <ul>${k.items.map(i=>`<li>${i}</li>`).join('')}</ul>
+    <div class="pz">${k.price}</div><button class="btn">Order this kit</button>`;
+  d.querySelector('button').addEventListener('click',()=>{
+    window.open(WA+encodeURIComponent(`Hi, I'd like to order the ${k.name} (${k.price}) — for ${k.for.toLowerCase()}. Please confirm stock and delivery.`),'_blank');
+  });
+  kg.appendChild(d);
+});
+
+/* ---- products ---- */
+const PRODUCTS=[
+ {cat:'Boxes',n:'Small box',d:'Books, tools, tinned food. The one to use for anything heavy.',p:9,  vis:[['v-box',34,44]]},
+ {cat:'Boxes',n:'Medium box',d:'The all-rounder — kitchenware, toys, small appliances.',p:12, vis:[['v-box',46,58]]},
+ {cat:'Boxes',n:'Large box',d:'Bedding, cushions, lampshades. Light and bulky only.',p:16, vis:[['v-box',58,72]]},
+ {cat:'Boxes',n:'Wardrobe box',d:'Built-in rail so clothes travel on their hangers.',p:45, vis:[['v-box',40,92]]},
+ {cat:'Boxes',n:'Picture &amp; mirror box',d:'Adjustable flat carton for framed art, mirrors and TVs.',p:38,vis:[['v-box',72,54]]},
+ {cat:'Protection',n:'Bubble wrap (10 m)',d:'Glassware, ceramics and electronics. Bubbles face inward.',p:35,vis:[['v-wrap',62,60]]},
+ {cat:'Protection',n:'Packing paper (5 kg)',d:'Ink-free paper for wrapping and filling gaps in boxes.',p:30,vis:[['v-wrap',56,52]]},
+ {cat:'Protection',n:'Mattress cover',d:'Heavy-duty cover keeping dust and moisture off in storage.',p:40,vis:[['v-cover',72,46]]},
+ {cat:'Protection',n:'Sofa cover',d:'Stretch cover for two and three-seaters through long holds.',p:55,vis:[['v-cover',78,50]]},
+ {cat:'Tape &amp; tools',n:'Packing tape',d:'48 mm heavy-duty. Roughly one roll per 12–15 boxes.',p:14, vis:[['v-roll',52,52]]},
+ {cat:'Tape &amp; tools',n:'Tape dispenser',d:'Halves your packing time and gives a cleaner seal.',p:28, vis:[['v-roll',46,46]]},
+ {cat:'Tape &amp; tools',n:'Marker pen (2-pack)',d:'Thick permanent markers for labelling two sides.',p:12, vis:[['v-marker',10,58]]},
+ {cat:'Tape &amp; tools',n:'Fragile labels (50)',d:'High-visibility stickers so the crew knows what to lift gently.',p:15,vis:[['v-marker',34,26]]},
+ {cat:'Security',n:'Disc lock',d:'Cut-resistant lock built for storage units. You keep the only key.',p:55,vis:[['v-lock',44,40]]},
+ {cat:'Security',n:'Padlock (heavy duty)',d:'Hardened steel shackle for cages, cabinets and lockers.',p:35,vis:[['v-lock',38,36]]},
+];
+const CATS=['All',...new Set(PRODUCTS.map(p=>p.cat))];
+const cart={};
+
+const fl=document.getElementById('filters');
+CATS.forEach((c,i)=>{
+  const b=document.createElement('button');
+  b.className='filt'+(i===0?' on':'');b.textContent=c.replace('&amp;','&');b.dataset.c=c;
+  b.addEventListener('click',()=>{
+    document.querySelectorAll('.filt').forEach(x=>x.classList.remove('on'));
+    b.classList.add('on');render(c);
+  });
+  fl.appendChild(b);
+});
+
+const pg=document.getElementById('prod-grid');
+function render(cat){
+  pg.innerHTML='';
+  PRODUCTS.filter(p=>cat==='All'||p.cat===cat).forEach(p=>{
+    const key=p.n;
+    const d=document.createElement('div');
+    d.className='prod';
+    const vis=p.vis.map(([c,w,h])=>`<div class="${c}" style="width:${w}px;height:${h}px"></div>`).join('');
+    d.innerHTML=`<div class="vis">${vis}</div>
+      <div class="cat">${p.cat}</div><h4>${p.n}</h4><div class="d">${p.d}</div>
+      <div class="pz">AED ${p.p}</div>
+      <div class="qty"><button data-a="-">−</button><span class="n">${cart[key]||0}</span><button data-a="+">+</button></div>`;
+    const nEl=d.querySelector('.qty .n');
+    d.querySelectorAll('.qty button').forEach(btn=>{
+      btn.addEventListener('click',()=>{
+        const cur=cart[key]||0;
+        const next=btn.dataset.a==='+'?cur+1:Math.max(0,cur-1);
+        if(next===0) delete cart[key]; else cart[key]=next;
+        nEl.textContent=next;
+        gsap.fromTo(nEl,{scale:1.4},{scale:1,duration:.28,ease:'back.out(3)'});
+        updateCart();
+      });
+    });
+    pg.appendChild(d);
+  });
+  gsap.from(pg.children,{opacity:0,y:16,duration:.45,stagger:.03,ease:'power2.out'});
+}
+render('All');
+
+function priceOf(n){return (PRODUCTS.find(p=>p.n===n)||{p:0}).p;}
+function updateCart(){
+  const keys=Object.keys(cart);
+  const count=keys.reduce((s,k)=>s+cart[k],0);
+  const total=keys.reduce((s,k)=>s+cart[k]*priceOf(k),0);
+  document.getElementById('cart-count').textContent = count===0?'0 items':`${count} item${count>1?'s':''} · AED ${total}`;
+  document.getElementById('cart-note').textContent = count===0?'— add supplies to get started':'— estimated, confirmed on WhatsApp';
+}
+document.getElementById('cart-clear').addEventListener('click',()=>{
+  Object.keys(cart).forEach(k=>delete cart[k]);
+  document.querySelectorAll('.qty .n').forEach(n=>n.textContent='0');
+  updateCart();
+});
+document.getElementById('cart-go').addEventListener('click',()=>{
+  const keys=Object.keys(cart);
+  if(!keys.length){
+    window.open(WA+encodeURIComponent("Hi, I'd like to order packing supplies. Can you help me work out what I need?"),'_blank');
+    return;
+  }
+  const lines=keys.map(k=>`${cart[k]} × ${k.replace('&amp;','&')} (AED ${priceOf(k)} each)`).join('\n');
+  const total=keys.reduce((s,k)=>s+cart[k]*priceOf(k),0);
+  window.open(WA+encodeURIComponent(`Hi, I'd like to order these packing supplies:\n${lines}\n\nEstimated total: AED ${total}. Please confirm stock and delivery.`),'_blank');
+});
+
+/* faq */
+document.querySelectorAll('.acc-item').forEach(it=>{
+  const q=it.querySelector('.acc-q'),a=it.querySelector('.acc-a');
+  q.addEventListener('click',()=>{
+    const open=it.classList.contains('open');
+    document.querySelectorAll('.acc-item.open').forEach(o=>{o.classList.remove('open');o.querySelector('.acc-a').style.maxHeight=null;});
+    if(!open){it.classList.add('open');a.style.maxHeight=a.scrollHeight+'px';}
+  });
+});
+
+/* reveals */
+gsap.utils.toArray('.reveal').forEach(el=>{
+  gsap.to(el,{opacity:1,y:0,duration:.8,ease:'power3.out',scrollTrigger:{trigger:el,start:'top 88%'}});
+});
+gsap.from('#stack .sbox',{yPercent:60,opacity:0,duration:.7,stagger:.07,ease:'power3.out',delay:.2});
+</script>
+
+</body>
+</html>

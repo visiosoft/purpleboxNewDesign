@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Reserve a Unit — PurpleBox Storage, Al Quoz Dubai</title>
+<meta name="description" content="Find the right storage unit size in Dubai. See exactly what fits in each unit, compare monthly prices, and reserve in minutes. Climate-controlled, 24/7 access, Al Quoz 2.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<style>
+:root{
+  --white:#FFFFFF; --paper:#F6F5F2; --ink:#17141D; --ink-soft:#6B6572;
+  --purple:#6D28D9; --purple-deep:#5B21B6; --purple-dim:#EFE9FB;
+  --kraft:#C9A876; --line:#E6E3DD;
+  --mono:'IBM Plex Mono',monospace; --disp:'Space Grotesk',sans-serif; --sans:'Inter',sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:var(--sans);background:var(--white);color:var(--ink);overflow-x:hidden;padding-bottom:76px;}
+a{color:inherit;text-decoration:none;}
+::selection{background:var(--purple);color:#fff;}
+a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible{outline:2px solid var(--purple);outline-offset:3px;}
+@media (prefers-reduced-motion: reduce){*{animation-duration:.01ms !important;transition-duration:.01ms !important;}}
+
+header{position:fixed;top:0;left:0;right:0;z-index:600;background:rgba(255,255,255,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);}
+.header-inner{max-width:1200px;margin:0 auto;padding:15px 5vw;display:flex;align-items:center;justify-content:space-between;gap:20px;}
+.logo-wrap img{height:42px;}
+.head-right{display:flex;align-items:center;gap:22px;}
+.head-right a.link{font-size:13.5px;color:var(--ink-soft);}
+.head-right a.link:hover{color:var(--ink);}
+.dd{position:relative;}
+.dd-toggle{display:inline-flex;align-items:center;gap:4px;background:none;border:none;padding:0;font:inherit;cursor:pointer;color:var(--ink-soft);}
+.dd-toggle:hover{color:var(--ink);}
+.dd-toggle .chev{width:7px;height:7px;border-right:1.5px solid currentColor;border-bottom:1.5px solid currentColor;transform:rotate(45deg);margin-top:-4px;transition:transform .2s ease;}
+.dd:hover .dd-toggle .chev,.dd:focus-within .dd-toggle .chev{transform:rotate(225deg);margin-top:2px;}
+.dd-menu{position:absolute;top:100%;left:50%;margin-top:14px;background:#fff;border:1px solid var(--line);border-radius:12px;box-shadow:0 16px 36px rgba(23,20,29,.14);padding:6px;min-width:140px;opacity:0;visibility:hidden;transform:translate(-50%,4px);transition:opacity .18s ease,transform .18s ease,visibility .18s;}
+.dd:hover .dd-menu,.dd:focus-within .dd-menu{opacity:1;visibility:visible;transform:translate(-50%,0);}
+.dd-menu a{display:block;padding:9px 12px;border-radius:8px;font-size:13.5px;color:var(--ink-soft);white-space:nowrap;}
+.dd-menu a:hover{background:var(--purple-dim);color:var(--ink);}
+.tel{font-family:var(--mono);font-size:13px;color:var(--ink-soft);}
+.nav-cta{background:var(--purple);color:#fff;padding:9px 18px;border-radius:100px;font-weight:600;font-size:13px;}
+.nav-cta:hover{background:var(--purple-deep);}
+@media(max-width:720px){.head-right a.link,.tel{display:none;}}
+
+.wrap{max-width:1200px;margin:0 auto;padding:0 5vw;}
+.eyebrow{font-family:var(--mono);font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--purple);display:flex;align-items:center;gap:12px;margin-bottom:14px;}
+.eyebrow::before{content:'';width:24px;height:1px;background:var(--purple);}
+h1{font-family:var(--disp);font-weight:700;font-size:clamp(2.1rem,4.6vw,3.4rem);line-height:1.05;letter-spacing:-.02em;max-width:17ch;}
+h2{font-family:var(--disp);font-weight:700;font-size:clamp(1.7rem,3.2vw,2.4rem);line-height:1.08;max-width:19ch;}
+h3{font-family:var(--disp);font-weight:600;font-size:1.12rem;}
+.lede{color:var(--ink-soft);font-size:1.05rem;margin-top:16px;max-width:52ch;line-height:1.62;}
+section{padding:92px 0;}
+.reveal{opacity:0;transform:translateY(22px);}
+
+/* intro */
+.intro{padding:150px 0 70px;background:var(--paper);border-bottom:1px solid var(--line);}
+.intro-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:56px;align-items:center;}
+.assure{display:flex;flex-wrap:wrap;gap:10px;margin-top:26px;}
+.assure span{font-family:var(--mono);font-size:11px;letter-spacing:.04em;text-transform:uppercase;color:var(--ink-soft);background:#fff;border:1px solid var(--line);padding:7px 13px;border-radius:100px;}
+.intro-video{border-radius:14px;overflow:hidden;border:1px solid var(--line);aspect-ratio:4/3;position:relative;}
+.intro-video video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;}
+@media(max-width:860px){.intro-grid{grid-template-columns:1fr;}}
+
+/* step ribbon */
+.steps{background:var(--ink);color:#fff;padding:0;}
+.steps-inner{max-width:1200px;margin:0 auto;padding:44px 5vw;display:grid;grid-template-columns:repeat(4,1fr);gap:34px;}
+.step .n{font-family:var(--mono);font-size:11px;color:var(--kraft);letter-spacing:.12em;}
+.step h4{font-family:var(--disp);font-size:1.02rem;font-weight:600;margin-top:8px;}
+.step p{font-size:.87rem;color:rgba(255,255,255,.62);margin-top:6px;line-height:1.5;}
+@media(max-width:860px){.steps-inner{grid-template-columns:repeat(2,1fr);gap:26px;}}
+
+/* size finder */
+.finder{background:var(--white);}
+.finder-card{background:var(--paper);border:1px solid var(--line);border-radius:18px;padding:38px;margin-top:40px;}
+.q-label{font-family:var(--mono);font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:14px;}
+.q-opts{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;}
+.q-opt{background:#fff;border:1px solid var(--line);border-radius:12px;padding:18px;cursor:pointer;text-align:left;font-family:var(--sans);transition:border-color .25s,background .25s;}
+.q-opt:hover{border-color:var(--purple);}
+.q-opt.on{border-color:var(--purple);background:var(--purple-dim);}
+.q-opt .t{font-family:var(--disp);font-weight:600;font-size:1rem;}
+.q-opt .s{font-size:.83rem;color:var(--ink-soft);margin-top:4px;line-height:1.4;}
+.result{margin-top:30px;padding-top:30px;border-top:1px dashed var(--line);display:none;}
+.result.show{display:block;}
+.result .rl{font-family:var(--mono);font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--purple);}
+.result .rs{font-family:var(--disp);font-size:2rem;font-weight:700;margin-top:6px;}
+.result .rs small{font-size:1rem;color:var(--ink-soft);font-weight:500;}
+.result .rf{color:var(--ink-soft);margin-top:8px;line-height:1.55;max-width:52ch;}
+.result .rw{font-family:var(--mono);font-size:12px;color:var(--ink-soft);margin-top:12px;background:#fff;border:1px solid var(--line);border-radius:8px;padding:12px 14px;max-width:52ch;}
+.btn{display:inline-flex;align-items:center;gap:9px;background:var(--purple);color:#fff;border:none;cursor:pointer;padding:14px 26px;border-radius:100px;font-family:var(--disp);font-weight:600;font-size:14px;}
+.btn:hover{background:var(--purple-deep);}
+.btn.ghost{background:transparent;color:var(--ink);border:1px solid var(--line);}
+.btn.ghost:hover{border-color:var(--ink);background:transparent;}
+.result .btn{margin-top:18px;}
+
+/* unit rows */
+.units{background:var(--paper);}
+.unit-row{display:grid;grid-template-columns:150px 1fr 190px 150px;gap:26px;align-items:center;background:#fff;border:1px solid var(--line);border-radius:14px;padding:24px 26px;margin-bottom:12px;transition:border-color .25s;}
+.unit-row:hover{border-color:var(--purple);}
+.u-left .code{font-family:var(--mono);font-size:11px;letter-spacing:.1em;color:var(--purple);}
+.u-left .sq{font-family:var(--disp);font-size:1.75rem;font-weight:700;margin-top:2px;}
+.u-left .sq span{font-size:.8rem;color:var(--ink-soft);margin-left:3px;}
+.u-fits .h{font-family:var(--disp);font-weight:600;font-size:1rem;}
+.u-fits .d{font-size:.88rem;color:var(--ink-soft);margin-top:5px;line-height:1.5;}
+.u-vis{display:flex;align-items:flex-end;gap:5px;height:62px;}
+.u-vis .uv{flex:0 0 auto;height:100%;display:flex;align-items:flex-end;}
+.u-vis .uv svg{height:100%;width:auto;display:block;}
+.u-price{text-align:right;}
+.u-price .p{font-family:var(--mono);font-size:1rem;}
+.u-price .go{font-family:var(--disp);font-weight:600;font-size:12.5px;color:var(--purple);margin-top:8px;cursor:pointer;}
+@media(max-width:900px){.unit-row{grid-template-columns:1fr 1fr;}.u-vis{display:none;}.u-price{text-align:left;}}
+
+/* included */
+.included{background:var(--white);}
+.inc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:14px;overflow:hidden;margin-top:40px;}
+.inc{background:#fff;padding:30px 26px;}
+.inc .n{font-family:var(--mono);font-size:11px;color:var(--purple);letter-spacing:.1em;}
+.inc h3{margin-top:10px;}
+.inc p{font-size:.9rem;color:var(--ink-soft);margin-top:8px;line-height:1.55;}
+@media(max-width:800px){.inc-grid{grid-template-columns:1fr;}}
+
+/* checklist */
+.prep{background:var(--paper);}
+.check-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-top:38px;}
+.check{background:#fff;border:1px solid var(--line);border-radius:12px;padding:22px 24px;display:flex;gap:16px;align-items:flex-start;}
+.check .tick{color:var(--purple);font-family:var(--mono);flex-shrink:0;}
+.check .ct{font-family:var(--disp);font-weight:600;font-size:.98rem;}
+.check .cd{font-size:.87rem;color:var(--ink-soft);margin-top:4px;line-height:1.5;}
+@media(max-width:760px){.check-grid{grid-template-columns:1fr;}}
+
+/* faq */
+.faq{background:var(--white);}
+.acc{max-width:800px;margin-top:34px;}
+.acc-item{border-bottom:1px solid var(--line);}
+.acc-q{width:100%;background:none;border:none;text-align:left;padding:22px 0;cursor:pointer;display:flex;justify-content:space-between;align-items:center;font-family:var(--disp);font-size:1.03rem;font-weight:600;color:var(--ink);}
+.acc-q .pl{font-family:var(--mono);font-size:1.15rem;color:var(--purple);transition:transform .3s;flex-shrink:0;margin-left:18px;}
+.acc-item.open .pl{transform:rotate(45deg);}
+.acc-a{max-height:0;overflow:hidden;transition:max-height .38s ease;}
+.acc-a p{padding-bottom:20px;color:var(--ink-soft);line-height:1.62;max-width:62ch;}
+
+/* booking */
+.booking{background:var(--ink);color:#fff;}
+.book-grid{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center;}
+.booking h2{color:#fff;}
+.booking .lede{color:rgba(255,255,255,.68);}
+.bpoints{margin-top:24px;display:flex;flex-direction:column;gap:12px;}
+.bpoint{display:flex;gap:12px;font-size:.93rem;color:rgba(255,255,255,.78);}
+.bpoint .k{color:var(--kraft);font-family:var(--mono);}
+.bcard{background:#fff;color:var(--ink);border-radius:18px;padding:34px;}
+.bcard label{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft);display:block;margin-top:16px;margin-bottom:7px;}
+.bcard input,.bcard select{width:100%;background:#fff;border:1px solid var(--line);border-radius:9px;padding:14px 15px;font-size:14px;font-family:var(--sans);color:var(--ink);}
+.bcard .go{width:100%;margin-top:22px;justify-content:center;}
+.bcard .fine{font-family:var(--mono);font-size:11px;color:var(--ink-soft);margin-top:12px;text-align:center;}
+@media(max-width:860px){.book-grid{grid-template-columns:1fr;}}
+
+/* sticky bar */
+.sticky-bar{position:fixed;bottom:0;left:0;right:0;z-index:650;background:rgba(255,255,255,.96);backdrop-filter:blur(10px);border-top:1px solid var(--line);padding:12px 5vw;display:flex;align-items:center;justify-content:space-between;gap:16px;}
+.sticky-bar .sb-txt{font-size:13px;color:var(--ink-soft);}
+.sticky-bar .sb-txt b{color:var(--ink);font-family:var(--disp);}
+.sticky-bar .sb-act{display:flex;gap:10px;flex-shrink:0;}
+.sticky-bar .btn{padding:11px 20px;font-size:13px;}
+@media(max-width:640px){.sticky-bar .sb-txt{display:none;}.sticky-bar{justify-content:center;}.sticky-bar .sb-act{width:100%;}.sticky-bar .btn{flex:1;justify-content:center;}}
+
+
+/* ---------- SITE FOOTER ---------- */
+footer.site{background:var(--ink);color:rgba(255,255,255,.6);padding:64px 5vw 26px;border-top:none;display:block;}
+footer.site .fin{max-width:1280px;margin:0 auto;}
+footer.site .fgrid{display:grid;grid-template-columns:1.5fr 1fr 1fr 1.2fr;gap:44px;padding-bottom:44px;border-bottom:1px solid rgba(255,255,255,.12);}
+footer.site .brand img{height:26px;filter:brightness(0) invert(1);margin-bottom:16px;}
+footer.site .tagline{font-family:var(--disp);font-size:1.05rem;color:#fff;line-height:1.4;margin-bottom:14px;}
+footer.site p,footer.site a{font-size:.9rem;line-height:1.75;color:rgba(255,255,255,.62);display:block;}
+footer.site a:hover{color:var(--kraft);}
+footer.site h5{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--kraft);margin-bottom:14px;}
+footer.site .chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px;}
+footer.site .chips span{font-family:var(--mono);font-size:10px;letter-spacing:.05em;text-transform:uppercase;color:rgba(255,255,255,.6);border:1px solid rgba(255,255,255,.18);padding:5px 11px;border-radius:100px;}
+footer.site .fcta{display:inline-flex;align-items:center;gap:8px;background:var(--purple);color:#fff;padding:11px 20px;border-radius:100px;font-family:var(--disp);font-weight:600;font-size:13px;margin-top:16px;}
+footer.site .fcta:hover{background:#8B5CF6;color:#fff;}
+footer.site .fbot{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;padding-top:22px;font-size:12px;color:rgba(255,255,255,.45);}
+footer.site .fbot a{display:inline;font-size:12px;color:rgba(255,255,255,.45);}
+@media(max-width:900px){footer.site .fgrid{grid-template-columns:1fr 1fr;gap:32px;}}
+@media(max-width:560px){footer.site .fgrid{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <div class="logo-wrap"><a href="index.html"><img src="https://purplebox.ae/wp-content/uploads/2026/05/logo-1.png" alt="PurpleBox"></a></div>
+    <div class="head-right">
+      <a class="link" href="index.html">Home</a>
+      <a class="link" href="reserve-unit.html" style="color:var(--purple);font-weight:600;">Reserve Unit</a>
+      <a class="link" href="packing-moving.html">Packing &amp; Moving</a>
+      <a class="link" href="size-guide.html">Size Guide</a>
+      <a class="link" href="supplies.html">Supplies</a>
+      <div class="dd">
+        <button class="dd-toggle" type="button">About us<span class="chev"></span></button>
+        <div class="dd-menu">
+          <a href="about.html">About</a>
+          <a href="contact.html">Contact</a>
+        </div>
+      </div>
+
+      <a class="tel" href="tel:+971542249946">+971 54 224 9946</a>
+      <a class="nav-cta" href="#book">Reserve Now</a>
+    </div>
+  </div>
+</header>
+
+<section class="intro">
+  <div class="wrap intro-grid">
+    <div>
+      <div class="eyebrow">Reserve a unit</div>
+      <h1>Not sure what size you need? Most people aren't.</h1>
+      <p class="lede">Nobody thinks in square feet — you think "my two-bedroom apartment" or "the furniture that won't fit in the new place." This page translates that into the right unit, shows you exactly what fits, and lets you hold it in a couple of minutes.</p>
+      <div class="assure">
+        <span>No payment to reserve</span><span>15-min callback</span><span>Cancel after month 1</span>
+      </div>
+      <a class="btn" href="#finder" style="margin-top:26px;">Find my size →</a>
+    </div>
+    <div class="intro-video">
+      <video autoplay muted loop playsinline>
+        <source src="https://purplebox.ae/wp-content/uploads/2026/06/video.mp4" type="video/mp4">
+      </video>
+    </div>
+  </div>
+</section>
+
+<section class="steps">
+  <div class="steps-inner">
+    <div class="step"><div class="n">STEP 01</div><h4>Work out your size</h4><p>Answer two questions below, or browse all eight sizes with what fits in each.</p></div>
+    <div class="step"><div class="n">STEP 02</div><h4>Reserve it</h4><p>Send your details. No payment, no card — the unit is held while we speak.</p></div>
+    <div class="step"><div class="n">STEP 03</div><h4>We confirm in 15 min</h4><p>A storage expert calls to confirm availability, final price, and move-in date.</p></div>
+    <div class="step"><div class="n">STEP 04</div><h4>Move in</h4><p>Bring it yourself, or book our packing and moving team to handle the lot.</p></div>
+  </div>
+</section>
+
+<section class="finder" id="finder">
+  <div class="wrap">
+    <div class="eyebrow reveal">Size finder</div>
+    <h2 class="reveal">Two questions and we'll size it for you.</h2>
+    <p class="lede reveal">This gives you a solid starting point. If you're between sizes we'll always tell you honestly on the call — paying for space you don't use helps nobody.</p>
+
+    <div class="finder-card reveal">
+      <div class="q-label">1 — What are you storing?</div>
+      <div class="q-opts" id="q1">
+        <button class="q-opt" data-v="0"><div class="t">A few boxes</div><div class="s">Documents, suitcases, seasonal items</div></button>
+        <button class="q-opt" data-v="1"><div class="t">A studio or 1-bed</div><div class="s">Bed, sofa, wardrobe, boxes</div></button>
+        <button class="q-opt" data-v="2"><div class="t">A 2–3 bed home</div><div class="s">Full apartment of furniture</div></button>
+        <button class="q-opt" data-v="3"><div class="t">A villa or office</div><div class="s">4+ bedrooms, or business stock</div></button>
+      </div>
+
+      <div class="q-label" style="margin-top:30px;">2 — How often will you visit?</div>
+      <div class="q-opts" id="q2">
+        <button class="q-opt" data-v="0"><div class="t">Rarely</div><div class="s">Packing it away and leaving it</div></button>
+        <button class="q-opt" data-v="1"><div class="t">Now and then</div><div class="s">In and out every few weeks</div></button>
+        <button class="q-opt" data-v="2"><div class="t">Often</div><div class="s">Weekly — I need walking space</div></button>
+      </div>
+
+      <div class="result" id="result">
+        <div class="rl">Our recommendation</div>
+        <div class="rs" id="r-size"></div>
+        <div class="rf" id="r-fits"></div>
+        <div class="rw" id="r-why"></div>
+        <button class="btn" id="r-book">Reserve this unit →</button>
+        <button class="btn ghost" id="r-see" style="margin-left:8px;">See all sizes</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="units" id="units">
+  <div class="wrap">
+    <div class="eyebrow reveal">All eight sizes</div>
+    <h2 class="reveal">What actually fits in each unit.</h2>
+    <p class="lede reveal">Monthly pricing, no setup or admin fees, VAT at the standard UAE rate. One month minimum, then month-to-month. The bars show relative capacity at a glance.</p>
+    <div id="unit-list" style="margin-top:40px;"></div>
+  </div>
+</section>
+
+<section class="included">
+  <div class="wrap">
+    <div class="eyebrow reveal">What you get</div>
+    <h2 class="reveal">Every unit includes all of this.</h2>
+    <div class="inc-grid">
+      <div class="inc reveal"><div class="n">01</div><h3>Climate control</h3><p>AC and humidity control on every unit. Dubai summers warp furniture and ruin electronics and documents — this is the whole point of paying for indoor storage.</p></div>
+      <div class="inc reveal"><div class="n">02</div><h3>24/7 access</h3><p>Come and go whenever you need, day or night. Elevator access throughout, so nothing has to be carried up stairs.</p></div>
+      <div class="inc reveal"><div class="n">03</div><h3>CCTV monitoring</h3><p>Cameras across the facility around the clock, with individually locked units. You hold the only key to yours.</p></div>
+      <div class="inc reveal"><div class="n">04</div><h3>Flexible terms</h3><p>One month minimum. Extend month-to-month, upsize or downsize as your needs change, cancel after month one with no penalty.</p></div>
+      <div class="inc reveal"><div class="n">05</div><h3>Pickup available</h3><p>Don't want to move it yourself? Our packing and moving team collects from anywhere in Dubai and loads it into your unit.</p></div>
+      <div class="inc reveal"><div class="n">06</div><h3>Supplies on site</h3><p>Boxes, tape, bubble wrap and locks available when you arrive, so a forgotten roll of tape doesn't cost you a trip.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="prep">
+  <div class="wrap">
+    <div class="eyebrow reveal">Before you move in</div>
+    <h2 class="reveal">Six things that make storage go smoothly.</h2>
+    <div class="check-grid">
+      <div class="check reveal"><span class="tick">✓</span><div><div class="ct">Label every box on two sides</div><div class="cd">Stacked boxes hide their tops. Side labels mean you can read the whole stack without unstacking it.</div></div></div>
+      <div class="check reveal"><span class="tick">✓</span><div><div class="ct">Leave a walkway down the middle</div><div class="cd">If you'll visit regularly, plan a corridor to the back wall. Everything is reachable and you won't need a bigger unit.</div></div></div>
+      <div class="check reveal"><span class="tick">✓</span><div><div class="ct">Disassemble what you can</div><div class="cd">Bed frames, table legs and shelving flat-pack down dramatically. This alone often drops you a size.</div></div></div>
+      <div class="check reveal"><span class="tick">✓</span><div><div class="ct">Nothing perishable or flammable</div><div class="cd">No food, plants, paint, gas cylinders or fuel. Everything else is generally fine — ask us if you're unsure.</div></div></div>
+      <div class="check reveal"><span class="tick">✓</span><div><div class="ct">Heavy on the bottom, light on top</div><div class="cd">Books and tools at floor level, linens and lamps above. Fewer crushed boxes, safer to unstack.</div></div></div>
+      <div class="check reveal"><span class="tick">✓</span><div><div class="ct">Photograph the unit when you finish</div><div class="cd">One photo of the packed unit tells you months later what's in there and roughly where.</div></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="faq" id="faq">
+  <div class="wrap">
+    <div class="eyebrow reveal">Questions</div>
+    <h2 class="reveal">The things people ask before reserving.</h2>
+    <div class="acc" id="acc">
+      <div class="acc-item reveal"><button class="acc-q">How is storage priced?<span class="pl">+</span></button><div class="acc-a"><p>Monthly, based on unit size. No setup or admin fees. VAT at the standard UAE rate. Cancel after the first month with no penalty.</p></div></div>
+      <div class="acc-item reveal"><button class="acc-q">Does reserving cost anything?<span class="pl">+</span></button><div class="acc-a"><p>No. Reserving holds the unit while we confirm availability and your move-in date. No card details, no deposit at this stage.</p></div></div>
+      <div class="acc-item reveal"><button class="acc-q">What if I pick the wrong size?<span class="pl">+</span></button><div class="acc-a"><p>You move to a different unit. Sizes are not locked in — if what you bring turns out smaller or larger than expected, we'll switch you and adjust the monthly price.</p></div></div>
+      <div class="acc-item reveal"><button class="acc-q">Can you pick up from my home?<span class="pl">+</span></button><div class="acc-a"><p>Yes. Pickup is available across Dubai. Send your address and item list on WhatsApp and we'll quote within hours. Our team can pack as well as move.</p></div></div>
+      <div class="acc-item reveal"><button class="acc-q">Are units climate-controlled?<span class="pl">+</span></button><div class="acc-a"><p>All of them have AC and humidity control. That protects wooden furniture, electronics, artwork and documents through the summer.</p></div></div>
+      <div class="acc-item reveal"><button class="acc-q">What's the minimum period?<span class="pl">+</span></button><div class="acc-a"><p>One month. After that, extend month-to-month or commit to a longer period for better value.</p></div></div>
+      <div class="acc-item reveal"><button class="acc-q">Who has access to my unit?<span class="pl">+</span></button><div class="acc-a"><p>You do. Units are individually locked and you hold the key. Facility staff don't enter without your permission except in an emergency.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="booking" id="book">
+  <div class="wrap book-grid">
+    <div>
+      <div class="eyebrow" style="color:var(--kraft);">Reserve</div>
+      <h2>Hold your unit. Decide the details on the call.</h2>
+      <p class="lede">Send your name, number and the size you're leaning toward. We'll confirm availability, final monthly price and move-in timing within 15 minutes — and tell you if a different size suits you better.</p>
+      <div class="bpoints">
+        <div class="bpoint"><span class="k">✦</span><span>No payment and no card details to reserve</span></div>
+        <div class="bpoint"><span class="k">✦</span><span>Al Quoz 2, Dubai — 24/7 access, climate-controlled</span></div>
+        <div class="bpoint"><span class="k">✦</span><span>Packing, moving and pickup available if you need it</span></div>
+      </div>
+    </div>
+    <div class="bcard">
+      <label for="b-size">Unit size</label>
+      <select id="b-size"></select>
+      <label for="b-name">Your name</label>
+      <input type="text" id="b-name" placeholder="Full name">
+      <label for="b-phone">Phone number</label>
+      <input type="tel" id="b-phone" placeholder="+971 5X XXX XXXX">
+      <label for="b-when">When do you need it?</label>
+      <select id="b-when">
+        <option>As soon as possible</option><option>This week</option>
+        <option>This month</option><option>Just planning ahead</option>
+      </select>
+      <button class="btn go" id="b-go">Reserve on WhatsApp</button>
+      <div class="fine">15-min reply · No spam · 100% free</div>
+    </div>
+  </div>
+</section>
+
+<div class="sticky-bar">
+  <div class="sb-txt">Selected: <b id="sb-unit">no size chosen yet</b></div>
+  <div class="sb-act">
+    <a class="btn ghost" href="tel:+971542249946">Call</a>
+    <a class="btn" href="#book">Reserve unit</a>
+  </div>
+</div>
+
+<footer class="site">
+  <div class="fin">
+    <div class="fgrid">
+      <div>
+        <div class="brand"><img src="https://purplebox.ae/wp-content/uploads/2026/05/logo-1.png" alt="PurpleBox"></div>
+        <div class="tagline">We Pack, Move &amp; Store Everything</div>
+        <p>Climate-controlled self-storage, packing and moving in Dubai — one team from your door to your unit and back.</p>
+        <div class="chips"><span>Climate controlled</span><span>24/7 CCTV</span><span>SIRA compliant</span><span>DM &amp; Civil Defence approved</span></div>
+      </div>
+
+      <div>
+        <h5>Services</h5>
+        <a href="reserve-unit.html">Reserve a unit</a>
+        <a href="size-guide.html">Size guide</a>
+        <a href="packing-moving.html">Packing &amp; moving</a>
+        <a href="supplies.html">Packing supplies</a>
+        <a href="packing-moving.html#quote">Move + store</a>
+      </div>
+
+      <div>
+        <h5>Company</h5>
+        <a href="index.html">Home</a>
+        <a href="about.html">About us</a>
+        <a href="contact.html">Contact</a>
+        <a href="reserve-unit.html#faq">FAQ</a>
+        <a href="https://wa.me/971542249946" target="_blank" rel="noopener">WhatsApp us</a>
+      </div>
+
+      <div>
+        <h5>Visit &amp; contact</h5>
+        <p>ABA Avenue — Unit 12, 12th Street<br>Al Quoz Industrial Area 2<br>Dubai, United Arab Emirates</p>
+        <a href="tel:+971542249946">+971 54 224 9946</a>
+        <a href="mailto:contact@purplebox.ae">contact@purplebox.ae</a>
+        <p style="margin-top:8px;">Unit access: 24 hours, 7 days</p>
+        <a class="fcta" href="https://wa.me/971542249946" target="_blank" rel="noopener">Chat on WhatsApp</a>
+      </div>
+    </div>
+
+    <div class="fbot">
+      <span>© 2026 Short Term Storage LLC — Dubai, UAE. All rights reserved.</span>
+      <span><a href="#">Privacy Policy</a> · <a href="#">Terms &amp; Conditions</a></span>
+    </div>
+  </div>
+</footer>
+
+<script>
+gsap.registerPlugin(ScrollTrigger);const WA='https://wa.me/971542249946?text=';
+
+const ART={
+ box:`<svg viewBox="0 0 100 90" preserveAspectRatio="none">
+   <rect x="4" y="22" width="92" height="66" fill="#D9BE92" stroke="rgba(0,0,0,.35)" stroke-width="2"/>
+   <path d="M4 22 L50 4 L96 22" fill="#E8D3AE" stroke="rgba(0,0,0,.35)" stroke-width="2" stroke-linejoin="round"/>
+   <path d="M50 4 V88" stroke="rgba(0,0,0,.28)" stroke-width="2"/>
+   <rect x="30" y="40" width="40" height="9" fill="rgba(255,255,255,.35)" rx="1"/>
+ </svg>`,
+ boxes:`<svg viewBox="0 0 100 100" preserveAspectRatio="none">
+   <rect x="6" y="52" width="88" height="46" fill="#D9BE92" stroke="rgba(0,0,0,.35)" stroke-width="2"/>
+   <path d="M6 52 L50 38 L94 52" fill="#E8D3AE" stroke="rgba(0,0,0,.35)" stroke-width="2" stroke-linejoin="round"/>
+   <rect x="18" y="10" width="64" height="34" fill="#CBB07F" stroke="rgba(0,0,0,.35)" stroke-width="2"/>
+   <path d="M18 10 L50 0 L82 10" fill="#DCC496" stroke="rgba(0,0,0,.35)" stroke-width="2" stroke-linejoin="round"/>
+ </svg>`,
+ sofa:`<svg viewBox="0 0 140 80" preserveAspectRatio="none">
+   <rect x="6" y="20" width="128" height="34" rx="7" fill="#8B84A8"/>
+   <rect x="0" y="30" width="18" height="34" rx="6" fill="#7A7398"/>
+   <rect x="122" y="30" width="18" height="34" rx="6" fill="#7A7398"/>
+   <rect x="18" y="40" width="104" height="24" rx="5" fill="#9C95B8"/>
+   <path d="M22 44 H66 M74 44 H118" stroke="rgba(0,0,0,.18)" stroke-width="2"/>
+   <rect x="24" y="64" width="8" height="10" fill="#5F5A73"/>
+   <rect x="108" y="64" width="8" height="10" fill="#5F5A73"/>
+ </svg>`,
+ wardrobe:`<svg viewBox="0 0 70 160" preserveAspectRatio="none">
+   <rect x="3" y="3" width="64" height="150" fill="#B08A54" stroke="rgba(0,0,0,.35)" stroke-width="2"/>
+   <path d="M35 3 V153" stroke="rgba(0,0,0,.35)" stroke-width="2"/>
+   <circle cx="29" cy="82" r="3" fill="#3A2E1D"/>
+   <circle cx="41" cy="82" r="3" fill="#3A2E1D"/>
+   <rect x="3" y="153" width="64" height="7" fill="#8A6A3E"/>
+   <path d="M10 20 H28 M42 20 H60" stroke="rgba(0,0,0,.15)" stroke-width="2"/>
+ </svg>`,
+ fridge:`<svg viewBox="0 0 60 150" preserveAspectRatio="none">
+   <rect x="3" y="3" width="54" height="144" rx="5" fill="#E9E7EE" stroke="rgba(0,0,0,.28)" stroke-width="2"/>
+   <path d="M3 52 H57" stroke="rgba(0,0,0,.28)" stroke-width="2"/>
+   <rect x="44" y="16" width="5" height="26" rx="2" fill="#9A96A6"/>
+   <rect x="44" y="62" width="5" height="34" rx="2" fill="#9A96A6"/>
+   <rect x="10" y="147" width="8" height="5" fill="#8F8B9B"/>
+   <rect x="42" y="147" width="8" height="5" fill="#8F8B9B"/>
+ </svg>`,
+ mattress:`<svg viewBox="0 0 130 46" preserveAspectRatio="none">
+   <rect x="3" y="3" width="124" height="40" rx="7" fill="#EFEDF3" stroke="rgba(0,0,0,.25)" stroke-width="2"/>
+   <path d="M3 16 H127 M3 30 H127" stroke="rgba(0,0,0,.12)" stroke-width="2"/>
+   <circle cx="26" cy="23" r="2.5" fill="rgba(0,0,0,.18)"/>
+   <circle cx="65" cy="23" r="2.5" fill="rgba(0,0,0,.18)"/>
+   <circle cx="104" cy="23" r="2.5" fill="rgba(0,0,0,.18)"/>
+ </svg>`,
+ tv:`<svg viewBox="0 0 120 80" preserveAspectRatio="none">
+   <rect x="3" y="3" width="114" height="62" rx="3" fill="#2C2937" stroke="#565266" stroke-width="3"/>
+   <rect x="10" y="10" width="100" height="48" fill="#3E3A4E"/>
+   <rect x="52" y="65" width="16" height="8" fill="#565266"/>
+   <rect x="38" y="73" width="44" height="5" rx="2" fill="#565266"/>
+ </svg>`,
+ bike:`<svg viewBox="0 0 120 80" preserveAspectRatio="none">
+   <circle cx="26" cy="54" r="22" fill="none" stroke="#55505E" stroke-width="5"/>
+   <circle cx="94" cy="54" r="22" fill="none" stroke="#55505E" stroke-width="5"/>
+   <path d="M26 54 L52 22 L78 54 M52 22 L94 54 M40 54 L62 54" fill="none" stroke="#6D28D9" stroke-width="5" stroke-linejoin="round"/>
+   <path d="M46 18 H62" stroke="#55505E" stroke-width="5" stroke-linecap="round"/>
+   <circle cx="52" cy="54" r="5" fill="#55505E"/>
+ </svg>`,
+ chair:`<svg viewBox="0 0 60 100" preserveAspectRatio="none">
+   <rect x="10" y="4" width="40" height="46" rx="4" fill="#8B84A8"/>
+   <rect x="6" y="50" width="48" height="12" rx="3" fill="#9C95B8"/>
+   <rect x="10" y="62" width="6" height="34" fill="#5F5A73"/>
+   <rect x="44" y="62" width="6" height="34" fill="#5F5A73"/>
+ </svg>`,
+ table:`<svg viewBox="0 0 130 70" preserveAspectRatio="none">
+   <rect x="3" y="8" width="124" height="12" rx="3" fill="#B08A54"/>
+   <rect x="14" y="20" width="8" height="46" fill="#96733F"/>
+   <rect x="108" y="20" width="8" height="46" fill="#96733F"/>
+   <rect x="20" y="34" width="90" height="6" fill="#A17C48"/>
+ </svg>`,
+ washer:`<svg viewBox="0 0 60 70" preserveAspectRatio="none">
+   <rect x="3" y="3" width="54" height="64" rx="4" fill="#E4E2EA" stroke="rgba(0,0,0,.25)" stroke-width="2"/>
+   <circle cx="30" cy="40" r="17" fill="#C3C0CD" stroke="rgba(0,0,0,.22)" stroke-width="2"/>
+   <circle cx="30" cy="40" r="9" fill="#9A96A6"/>
+   <rect x="9" y="11" width="30" height="6" rx="2" fill="#B4B0BE"/>
+ </svg>`,
+ lamp:`<svg viewBox="0 0 50 120" preserveAspectRatio="none">
+   <path d="M12 4 H38 L46 30 H4 Z" fill="#D9BE92" stroke="rgba(0,0,0,.25)" stroke-width="2"/>
+   <rect x="22" y="30" width="6" height="76" fill="#55505E"/>
+   <ellipse cx="25" cy="110" rx="17" ry="6" fill="#55505E"/>
+ </svg>`,
+};
+
+const UNITS=[
+ {code:'XS',size:10, home:'Boxes & suitcases', art:[['boxes',62],['box',44]], price:'AED 350 /mo',        head:'Boxes and suitcases',      fits:'Around 15–20 boxes, suitcases, documents and seasonal items. No large furniture.', bars:2},
+ {code:'SS',size:25, home:'Studio / 1BHK', art:[['wardrobe',96],['mattress',30],['boxes',52]], price:'AED 650 /mo',        head:'A 1-bedroom apartment',    fits:'Bed frame, mattress, small wardrobe, a few chairs and roughly 20 boxes.', bars:3},
+ {code:'M', size:35, home:'2BHK apartment', art:[['wardrobe',96],['sofa',46],['boxes',50]], price:'AED 770 /mo',        head:'A 2-bedroom apartment',    fits:'Two bedrooms of furniture, a sofa, dining table and around 25 boxes.', bars:4},
+ {code:'S', size:50, home:'1BHK + spare room', art:[['wardrobe',96],['sofa',46],['tv',34],['boxes',48]], price:'AED 980 /mo',        head:'A 1-bedroom, with room',   fits:'A full 1-bed apartment with walking space left over — good if you visit often.', bars:5},
+ {code:'M+',size:75, home:'2–3BHK apartment', art:[['wardrobe',96],['fridge',88],['sofa',44],['washer',48],['boxes',46]], price:'AED 1,400–1,500 /mo',head:'A 2–3 bedroom apartment',  fits:'Sofas, beds, wardrobes, fridge, washing machine, dining set and 40+ boxes.', bars:6},
+ {code:'L', size:100, home:'3BHK / small villa', art:[['wardrobe',96],['fridge',88],['sofa',42],['bike',40],['boxes',44]],price:'AED 1,700–2,000 /mo',head:'A small villa or 3-bed',   fits:'Three bedrooms, full living and dining rooms, white goods, bicycles and boxes.', bars:7},
+ {code:'XL',size:150, home:'4BHK villa', art:[['wardrobe',96],['wardrobe',88],['fridge',84],['sofa',40],['bike',38],['boxes',42]],price:'AED 2,600–3,000 /mo',head:'A 4-bedroom villa',        fits:'The contents of a four-bedroom home, or business stock and office furniture.', bars:8},
+ {code:'XXL',size:200, home:'4–5BHK villa', art:[['wardrobe',96],['wardrobe',88],['fridge',84],['sofa',40],['mattress',24],['bike',36],['boxes',40]],price:'AED 3,300–4,000 /mo',head:'A full villa, comfortably',fits:'Everything from a large villa with space to move around inside the unit.', bars:9},
+];
+
+/* ---- unit rows ---- */
+const list=document.getElementById('unit-list');
+UNITS.forEach((u,i)=>{
+  const row=document.createElement('div');
+  row.className='unit-row reveal';
+  const bars=(u.art||[]).map(([k,h])=>`<div class="uv" style="height:${h}%">${ART[k]||''}</div>`).join('');
+  row.innerHTML=`
+    <div class="u-left"><div class="code">${u.home}</div><div class="sq">${u.size}<span>sq ft</span></div></div>
+    <div class="u-fits"><div class="h">${u.head}</div><div class="d">${u.fits}</div></div>
+    <div class="u-vis">${bars}</div>
+    <div class="u-price"><div class="p">${u.price}</div><div class="go">Reserve this →</div></div>`;
+  row.querySelector('.go').addEventListener('click',()=>choose(i,true));
+  list.appendChild(row);
+});
+
+/* ---- size dropdown ---- */
+const sel=document.getElementById('b-size');
+sel.innerHTML='<option value="-1">Not sure — help me choose</option>'+
+  UNITS.map((u,i)=>`<option value="${i}">${u.code} · ${u.size} sq ft — ${u.price}</option>`).join('');
+
+/* ---- selection state ---- */
+let picked=-1;
+function choose(i,scroll){
+  picked=i; sel.value=String(i);
+  document.getElementById('sb-unit').textContent = i<0 ? 'no size chosen yet' : `${UNITS[i].code} · ${UNITS[i].size} sq ft — ${UNITS[i].price}`;
+  if(scroll) document.getElementById('book').scrollIntoView({behavior:'smooth'});
+}
+sel.addEventListener('change',()=>choose(parseInt(sel.value,10),false));
+
+/* ---- size finder ---- */
+let a1=null,a2=null;
+function bindQ(id,cb){
+  document.querySelectorAll('#'+id+' .q-opt').forEach(b=>{
+    b.addEventListener('click',()=>{
+      document.querySelectorAll('#'+id+' .q-opt').forEach(x=>x.classList.remove('on'));
+      b.classList.add('on'); cb(parseInt(b.dataset.v,10)); evaluate();
+    });
+  });
+}
+bindQ('q1',v=>a1=v); bindQ('q2',v=>a2=v);
+
+// base index by what they're storing, bumped up if they visit often
+const BASE=[0,1,4,6];
+function evaluate(){
+  if(a1===null||a2===null) return;
+  let idx=BASE[a1];
+  if(a2===1) idx=Math.min(UNITS.length-1,idx+1);
+  if(a2===2) idx=Math.min(UNITS.length-1,idx+ (a1===0?1:2));
+  const u=UNITS[idx];
+  document.getElementById('r-size').innerHTML=`Unit ${u.code} — ${u.size} sq ft <small>· ${u.price}</small>`;
+  document.getElementById('r-fits').textContent=`Accommodates a ${u.home.toLowerCase()}. ${u.fits}`;
+  document.getElementById('r-why').textContent = a2===0
+    ? 'Packing it away and leaving it means you can stack to the ceiling, so this is sized tight with no wasted space.'
+    : a2===1
+    ? 'Visiting every few weeks, we have sized this with a little slack so you are not unstacking the whole unit each time.'
+    : 'Weekly visits need a walkway to the back wall, so this is one size up from the pure volume calculation.';
+  const r=document.getElementById('result');
+  r.classList.add('show');
+  gsap.fromTo(r,{opacity:0,y:14},{opacity:1,y:0,duration:.5,ease:'power3.out'});
+  choose(idx,false);
+}
+document.getElementById('r-book').addEventListener('click',()=>document.getElementById('book').scrollIntoView({behavior:'smooth'}));
+document.getElementById('r-see').addEventListener('click',()=>document.getElementById('units').scrollIntoView({behavior:'smooth'}));
+
+/* ---- booking ---- */
+document.getElementById('b-go').addEventListener('click',()=>{
+  const n=document.getElementById('b-name').value.trim();
+  const p=document.getElementById('b-phone').value.trim();
+  const w=document.getElementById('b-when').value;
+  const i=parseInt(sel.value,10);
+  const unitTxt = i<0 ? 'a unit (not sure of the size yet — please advise)' : `unit ${UNITS[i].code}, ${UNITS[i].size} sq ft (${UNITS[i].price})`;
+  const msg=`Hi, I'd like to reserve ${unitTxt}.`+(n?` Name: ${n}.`:'')+(p?` Phone: ${p}.`:'')+` Needed: ${w}.`;
+  window.open(WA+encodeURIComponent(msg),'_blank');
+});
+
+/* ---- faq ---- */
+document.querySelectorAll('.acc-item').forEach(it=>{
+  const q=it.querySelector('.acc-q'),a=it.querySelector('.acc-a');
+  q.addEventListener('click',()=>{
+    const open=it.classList.contains('open');
+    document.querySelectorAll('.acc-item.open').forEach(o=>{o.classList.remove('open');o.querySelector('.acc-a').style.maxHeight=null;});
+    if(!open){it.classList.add('open');a.style.maxHeight=a.scrollHeight+'px';}
+  });
+});
+
+/* ---- reveals ---- */
+gsap.utils.toArray('.reveal').forEach(el=>{
+  gsap.to(el,{opacity:1,y:0,duration:.8,ease:'power3.out',scrollTrigger:{trigger:el,start:'top 88%'}});
+});
+</script>
+
+</body>
+</html>
