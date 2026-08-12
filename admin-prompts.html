@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Prompt Setup — PurpleBox</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--white:#FFFFFF;--paper:#F6F5F2;--ink:#17141D;--ink-soft:#6B6572;--purple:#6D28D9;--purple-deep:#5B21B6;--purple-dim:#EFE9FB;--line:#E6E3DD;--mono:'IBM Plex Mono',monospace;--disp:'Space Grotesk',sans-serif;--sans:'Inter',sans-serif;}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:var(--sans);background:var(--paper);color:var(--ink);min-height:100vh;display:flex;align-items:center;justify-content:center;padding:40px 5vw;}
+a{color:var(--purple);}
+.card{width:100%;max-width:640px;background:#fff;border:1px solid var(--line);border-radius:16px;padding:36px;box-shadow:0 24px 60px rgba(23,20,29,.08);}
+.eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--purple);margin-bottom:10px;}
+h1{font-family:var(--disp);font-weight:700;font-size:1.6rem;margin-bottom:8px;}
+.sub{color:var(--ink-soft);font-size:.92rem;line-height:1.55;margin-bottom:26px;}
+label{display:block;font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:8px;}
+input[type=password],textarea{width:100%;border:1px solid var(--line);border-radius:10px;padding:12px 14px;font-family:var(--sans);font-size:14px;color:var(--ink);outline:none;background:var(--paper);}
+input[type=password]:focus,textarea:focus{border-color:var(--purple);background:#fff;}
+textarea{min-height:280px;line-height:1.55;resize:vertical;font-family:var(--mono);font-size:12.5px;}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;background:var(--purple);color:#fff;border:none;cursor:pointer;padding:12px 24px;border-radius:100px;font-family:var(--disp);font-weight:600;font-size:14px;margin-top:16px;}
+.btn:hover{background:var(--purple-deep);}
+.btn:disabled{opacity:.5;cursor:default;}
+.msg{margin-top:14px;font-size:13px;padding:10px 14px;border-radius:8px;display:none;}
+.msg.show{display:block;}
+.msg.err{background:#FCE9E9;color:#A32424;}
+.msg.ok{background:#E8F6EC;color:#1F7A38;}
+.hint{font-size:12px;color:var(--ink-soft);margin-top:10px;line-height:1.5;}
+#unlockView{}
+#editorView{display:none;}
+.top-row{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:24px;flex-wrap:wrap;}
+.back{font-family:var(--mono);font-size:12px;text-decoration:none;}
+</style>
+</head>
+<body>
+
+<div class="card">
+  <div class="eyebrow">Internal tool</div>
+  <h1>AI Assistant — Prompt Setup</h1>
+  <p class="sub">Edit the system prompt that controls how the PurpleBox chat assistant answers visitors. Changes apply immediately across the whole site once saved.</p>
+
+  <div id="unlockView">
+    <label for="pwInput">Admin password</label>
+    <input type="password" id="pwInput" placeholder="Enter password" autocomplete="current-password">
+    <button class="btn" id="unlockBtn" type="button">Unlock</button>
+    <div class="msg err" id="unlockErr"></div>
+    <p class="hint">Default password is <code>purplebox2026</code> until an <code>ADMIN_PROMPT_PASSWORD</code> environment variable is set in Netlify — change this before going live.</p>
+  </div>
+
+  <div id="editorView">
+    <label for="promptText">System prompt</label>
+    <textarea id="promptText" spellcheck="false"></textarea>
+    <div class="top-row">
+      <button class="btn" id="saveBtn" type="button">Save prompt</button>
+      <a class="back" href="index.html">← Back to site</a>
+    </div>
+    <div class="msg ok" id="saveOk">Saved — the assistant will use this prompt from now on.</div>
+    <div class="msg err" id="saveErr"></div>
+  </div>
+</div>
+
+<script>
+let PASSWORD = '';
+
+const pwInput = document.getElementById('pwInput');
+const unlockBtn = document.getElementById('unlockBtn');
+const unlockErr = document.getElementById('unlockErr');
+const unlockView = document.getElementById('unlockView');
+const editorView = document.getElementById('editorView');
+const promptText = document.getElementById('promptText');
+const saveBtn = document.getElementById('saveBtn');
+const saveOk = document.getElementById('saveOk');
+const saveErr = document.getElementById('saveErr');
+
+function showMsg(el, text){
+  el.textContent = text;
+  el.classList.add('show');
+}
+function hideMsg(el){ el.classList.remove('show'); }
+
+async function unlock(){
+  hideMsg(unlockErr);
+  const pw = pwInput.value;
+  if(!pw) return;
+  unlockBtn.disabled = true;
+  try{
+    const res = await fetch('/api/prompt?password=' + encodeURIComponent(pw));
+    if(!res.ok){
+      showMsg(unlockErr, 'Incorrect password.');
+      unlockBtn.disabled = false;
+      return;
+    }
+    const data = await res.json();
+    PASSWORD = pw;
+    promptText.value = data.prompt;
+    unlockView.style.display = 'none';
+    editorView.style.display = 'block';
+  }catch(e){
+    showMsg(unlockErr, 'Could not reach the server. Try again in a moment.');
+  }
+  unlockBtn.disabled = false;
+}
+
+async function save(){
+  hideMsg(saveOk); hideMsg(saveErr);
+  const prompt = promptText.value.trim();
+  if(!prompt) return;
+  saveBtn.disabled = true;
+  try{
+    const res = await fetch('/api/prompt', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ password: PASSWORD, prompt })
+    });
+    if(!res.ok){
+      showMsg(saveErr, 'Save failed — session may have expired, reload and try again.');
+    } else {
+      showMsg(saveOk, 'Saved — the assistant will use this prompt from now on.');
+    }
+  }catch(e){
+    showMsg(saveErr, 'Could not reach the server. Try again in a moment.');
+  }
+  saveBtn.disabled = false;
+}
+
+unlockBtn.addEventListener('click', unlock);
+pwInput.addEventListener('keydown', e=>{ if(e.key==='Enter') unlock(); });
+saveBtn.addEventListener('click', save);
+</script>
+</body>
+</html>

@@ -1,0 +1,9 @@
+{
+  "name": "purplebox-site",
+  "private": true,
+  "version": "1.0.0",
+  "description": "PurpleBox Storage marketing site (static HTML) with Netlify Functions for the AI chat assistant.",
+  "dependencies": {
+    "@netlify/blobs": "^8.1.0"
+  }
+}
