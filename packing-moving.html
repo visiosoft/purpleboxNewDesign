@@ -465,6 +465,12 @@ gsap.registerPlugin(ScrollTrigger);
     ['touchstart','click','scroll'].forEach(evt=>{
       document.addEventListener(evt,tryPlay,{once:true,passive:true});
     });
+    if('IntersectionObserver' in window){
+      const io=new IntersectionObserver(entries=>{
+        entries.forEach(e=>{ if(e.isIntersecting) tryPlay(); });
+      },{threshold:.15});
+      io.observe(v);
+    }
   });
 })();
 
